@@ -30,7 +30,7 @@ module.exports = function(config) {
       ]
     },
 
-    reporters: ['spec', 'coverage', 'coveralls'],
+    reporters: ['coverage', 'coveralls', 'spec'],
 
     coverageReporter: {
       type: 'lcovonly',
