@@ -4,5 +4,5 @@ export default angular.module('irVivace', [
   require('angular-route'),
   require('angular-sanitize'),
   require('./filters'),
-  require('./candidateList')
+  require('./vivace/list')
 ]);

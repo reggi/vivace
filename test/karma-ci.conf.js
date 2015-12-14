@@ -30,11 +30,13 @@ module.exports = function(config) {
       ]
     },
 
-    reporters: ['spec', 'coverage'],
+    reporters: ['coverage', /*'coveralls',*/ 'spec'],
 
     coverageReporter: {
-      type: 'html',
-      dir: 'build/coverage/'
+      type: 'lcovonly',
+      dir: './coverage',
+      subdir: '.',
+      repoToken: process.env.COVERALLS_REPO_TOKEN
     },
 
     webpack: {
@@ -74,6 +76,7 @@ module.exports = function(config) {
       require("isparta-loader"),
       require("karma-mocha"),
       require("karma-coverage"),
+      require('karma-coveralls'),
       require("karma-phantomjs-launcher"),
       require("karma-spec-reporter"),
       require('karma-babel-preprocessor')
