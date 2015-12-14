@@ -33,8 +33,8 @@ module.exports = function(config) {
     reporters: ['spec', 'coverage'],
 
     coverageReporter: {
-      type: 'html',
-      dir: 'build/coverage/'
+      type: 'lcov',
+      dir: '../coverage/'
     },
 
     webpack: {
