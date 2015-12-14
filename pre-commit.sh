@@ -1,1 +1,2 @@
-npm run test
+#!/bin/sh
+exec npm run test
