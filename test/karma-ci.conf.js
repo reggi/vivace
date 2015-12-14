@@ -30,11 +30,16 @@ module.exports = function(config) {
       ]
     },
 
-    reporters: ['spec', 'coverage'],
+    reporters: ['coverage', 'spec'],
 
     coverageReporter: {
-      type: 'html',
-      dir: 'build/coverage/'
+      type: 'lcovonly',
+      dir: path.join(__dirname, 'coverage'),
+      subdir: '.',
+      instrumenters: {isparta: require('isparta')},
+      instrumenter: {
+        '**/*.js': 'isparta'
+      }
     },
 
     webpack: {
@@ -43,7 +48,7 @@ module.exports = function(config) {
         loaders: [
           {test: /\.js$/, loader: 'babel-loader', exclude: nodeModulesDir},
           {test: /\.css$/, loader: "style!css"},
-          { test: /\.html$/, loader: 'ngtemplate!html-loader'}
+          {test: /\.html$/, loader: 'ngtemplate!html-loader'}
         ],
         postLoaders: [{
           test: /\.js/,

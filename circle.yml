@@ -1,0 +1,11 @@
+machine:
+  node:
+    version: 4.1.0
+
+dependencies:
+  cache_directories:
+    - "node_modules"
+
+test:
+  override:
+    - npm run test-ci

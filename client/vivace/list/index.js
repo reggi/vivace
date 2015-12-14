@@ -1,5 +1,4 @@
 import angular from 'angular';
-import 'angular-material/angular-material.css';
 import routes from './routes';
 
 angular.module('irCandidateList', [
@@ -13,11 +12,11 @@ angular.module('irCandidateList', [
 .provider('candidateListConfig', require('./configurationProvider'))
 
 .config(function($routeProvider, candidateListConfigProvider) {
-    const routePrefix = candidateListConfigProvider.routePrefix;
+  const routePrefix = candidateListConfigProvider.routePrefix;
 
-    routes.forEach((route) => {
-      $routeProvider.when(routePrefix + route.path, route);
-    });
+  routes.forEach((route) => {
+    $routeProvider.when(routePrefix + route.path, route);
+  });
 });
 
 module.exports = 'irCandidateList';
