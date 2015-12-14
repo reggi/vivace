@@ -8,8 +8,8 @@
     "test": "node ./node_modules/karma/bin/karma start test/karma-dev.conf.js --single-run --browsers PhantomJS",
     "test-watch": "node ./node_modules/karma/bin/karma start test/karma-dev.conf.js --browsers PhantomJS",
     "test-ci": "node ./node_modules/karma/bin/karma start test/karma-ci.conf.js --single-run --browsers PhantomJS",
-    "coverage-push": "sleep 2; cat $(pwd)/test/coverage/lcov.info | ./node_modules/.bin/coveralls",
-    "postinstall": "cp ./pre-commit.sh ./.git/hooks/pre-commit"
+    "coverage-push": "cat $(pwd)/test/coverage/lcov.info | ./node_modules/.bin/coveralls",
+    "coverage-list": "ls -a $(pwd)/test/coverage"
   },
   "author": "",
   "license": "ISC",

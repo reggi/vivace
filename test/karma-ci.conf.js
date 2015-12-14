@@ -16,6 +16,8 @@ module.exports = function(config) {
     // frameworks to use
     frameworks: ['mocha'],
 
+    logLevel: config.LOG_DEBUG,
+
     preprocessors: {
       // only specify one entry point
       // and require all tests in there
@@ -34,7 +36,7 @@ module.exports = function(config) {
 
     coverageReporter: {
       type: 'lcovonly',
-      dir: './coverage',
+      dir: path.join(__dirname, 'coverage'),
       subdir: '.',
       repoToken: process.env.COVERALLS_REPO_TOKEN
     },
@@ -45,7 +47,7 @@ module.exports = function(config) {
         loaders: [
           {test: /\.js$/, loader: 'babel-loader', exclude: nodeModulesDir},
           {test: /\.css$/, loader: "style!css"},
-          { test: /\.html$/, loader: 'ngtemplate!html-loader'}
+          {test: /\.html$/, loader: 'ngtemplate!html-loader'}
         ],
         postLoaders: [{
           test: /\.js/,
