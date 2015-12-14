@@ -5,6 +5,4 @@ cache: bundler
 
 scripts:
   test: "npm run test-ci"
-
-after_success:
-  - coveralls
+ 
