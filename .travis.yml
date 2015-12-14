@@ -5,3 +5,5 @@ cache: bundler
 
 scripts:
   test: "npm run test-ci"
+after_success:
+  - 'cat ./coverage/lcov.info | ./node_modules/.bin/coveralls'
