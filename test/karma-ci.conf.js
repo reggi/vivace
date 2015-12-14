@@ -30,7 +30,7 @@ module.exports = function(config) {
       ]
     },
 
-    reporters: ['spec', 'coverage', 'coveralls'],
+    reporters: ['spec', 'coverage'],
 
     coverageReporter: {
       type: 'lcovonly',
@@ -75,7 +75,6 @@ module.exports = function(config) {
       require("isparta-loader"),
       require("karma-mocha"),
       require("karma-coverage"),
-      require('karma-coveralls'),
       require("karma-phantomjs-launcher"),
       require("karma-spec-reporter"),
       require('karma-babel-preprocessor')
