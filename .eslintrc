@@ -1,0 +1,30 @@
+{
+  "env": {
+    "node": true,
+    "es6": true
+  },
+  "parser": "babel-eslint",
+  "plugins": [
+    "babel"
+  ],
+  "rules": {
+    "no-throw-literal": 1,
+    "semi": [2, "always"],
+    "quotes": [2, "single"],
+    "quote-props": [2, "as-needed"],
+    "object-shorthand": [2, "always"],
+    "no-var": 2,
+    "no-new-require": 1,
+    "no-sync": 1,
+    "no-mixed-requires": [1, false],
+    "no-trailing-spaces": 2,
+    "one-var": [2, "never"],
+    "no-mixed-spaces-and-tabs": 2,
+    "babel/generator-star-spacing": 1,
+    "babel/new-cap": 1,
+    "babel/object-curly-spacing": 1,
+    "babel/object-shorthand": 1,
+    "babel/arrow-parens": 1,
+    "babel/no-await-in-loop": 1
+  }
+}
