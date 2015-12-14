@@ -1,8 +1,8 @@
 import angular from 'angular';
 
-export default angular.module('irProspects', [
+export default angular.module('irVivace', [
   require('angular-route'),
   require('angular-sanitize'),
   require('./filters'),
-  require('./prospectList')
+  require('./candidateList')
 ]);
