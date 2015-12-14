@@ -35,7 +35,8 @@ module.exports = function(config) {
     coverageReporter: {
       type: 'lcovonly',
       dir: './coverage/',
-      subdir: '.'
+      subdir: '.',
+      repoToken: process.env.COVERALLS_REPO_TOKEN
     },
 
     webpack: {
