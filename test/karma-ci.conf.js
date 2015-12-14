@@ -30,11 +30,11 @@ module.exports = function(config) {
       ]
     },
 
-    reporters: ['coverage', 'coveralls', 'spec'],
+    reporters: ['coverage', /*'coveralls',*/ 'spec'],
 
     coverageReporter: {
       type: 'lcovonly',
-      dir: '..',
+      dir: './coverage',
       subdir: '.',
       repoToken: process.env.COVERALLS_REPO_TOKEN
     },
