@@ -5,8 +5,10 @@ import path from 'path';
 
 import webpackConfig from '../webpack.config';
 
-const app = express();
+import apiRouter from './routes';
 
+const app = express();
+const port = process.env.PORT || 8001;
 
 if (process.env.NODE_ENV !== 'production') {
   const webpackDevMiddleware = require('webpack-dev-middleware');
@@ -29,6 +31,9 @@ app.get('/', (req, res) => {
   });
 });
 
-app.listen(8001, () => {
+app.listen(port, () => {
   console.log('app is listening on port 8001');
 });
+
+//Registering our routes
+app.use('/api', apiRouter);
