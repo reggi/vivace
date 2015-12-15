@@ -23,6 +23,12 @@ module.exports = function(config) {
       '**/*_test.js': ['babel']
     },
 
+    postLoaders: [{
+      test: /\.js/,
+      exclude: /(test|node_modules|bower_components)/,
+      loader: 'isparta'
+    }],
+
     babelPreprocessor: {
       "presets": [
         "es2015",
@@ -30,7 +36,7 @@ module.exports = function(config) {
       ]
     },
 
-    reporters: ['spec'],
+    reporters: ['spec', 'coverage'],
 
     webpack: {
       // webpack configuration
@@ -57,6 +63,22 @@ module.exports = function(config) {
       // webpack-dev-middleware configuration
       noInfo: true,
       devtool: 'eval'
+    },
+
+    coverageReporter: {
+      type: 'lcovonly',
+      instrumenters: {isparta: require('isparta')},
+      instrumenter: {
+        '**/*.js': 'isparta'
+      },
+      dir: path.join(__dirname, 'coverage'),
+      subdir: '.',
+      check: {
+        global: {
+          statements: 90,
+          lines: -10
+        }
+      }
     },
 
     plugins: [
