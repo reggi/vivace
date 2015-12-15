@@ -24,7 +24,6 @@ module.exports = function () {
     });
   }
 
-
   /**
    * Returns a list of records in the FIRE list.
    *
@@ -35,7 +34,6 @@ module.exports = function () {
       resolve(collections[collectionName]);
     });
   }
-
 
   /**
    * Adds a record to the data store.
@@ -72,7 +70,5 @@ module.exports = function () {
     });
   }
 
-  let exports = {all, add, get, update};
-
-  return exports;
+  return {all, add, get, update};
 };

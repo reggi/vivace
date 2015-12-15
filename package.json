@@ -14,8 +14,7 @@
   "license": "ISC",
   "dependencies": {
     "babel-core": "^6.3.17",
-    "express": "^4.13.3",
-    "fs": "0.0.2"
+    "express": "^4.13.3"
   },
   "devDependencies": {
     "angular": "^1.4.8",

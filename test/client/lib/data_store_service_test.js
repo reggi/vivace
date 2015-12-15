@@ -1,7 +1,6 @@
 const chai = require('chai');
 const chaiSubset = require('chai-subset');
 const faker = require('faker');
-const fs = require('fs');
 
 let mockWindow;
 let dataStoreService;
