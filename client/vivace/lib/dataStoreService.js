@@ -3,7 +3,7 @@
 module.exports = function () {
 
   let collections = {
-    records: []
+    candidates: []
   };
 
   let collectionName = 'candidates';
@@ -34,7 +34,7 @@ module.exports = function () {
    */
   function all(collectionName) {
     return new Promise((resolve, reject) => {
-      resolve(collection[collectionName]);
+      resolve(collections[collectionName]);
     });
   }
 
@@ -47,8 +47,8 @@ module.exports = function () {
    */
   function add(details, collectionName) {
     return new Promise((resolve, reject) => {
-      details.$id = dataStoreService.generateId();
-      collection.push(details);
+      details.$id = 1;
+      collections[collectionName].push(details);
 
       resolve(details);
     });
