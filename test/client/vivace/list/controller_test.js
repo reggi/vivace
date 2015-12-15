@@ -12,7 +12,4 @@ describe('the vivace list controller', () => {
     chai.expect(ctrl).not.to.be.null;
   });
 
-  it('should have a default status of red', () => {
-    ctrl.status.should.equal('red');
-  });
 });
