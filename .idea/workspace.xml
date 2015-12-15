@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fb2edc4a-cb0b-4db6-b6da-4030e7d41095" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/client/vivace/list/controller_test.js" afterPath="$PROJECT_DIR$/test/client/vivace/list/controller_test.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/vivace/details/controller.js" afterPath="$PROJECT_DIR$/client/vivace/details/controller.js" />
     </list>
     <ignored path="vivace.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -48,9 +49,7 @@
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="-1.3571428">
               <caret line="2" column="8" selection-start-line="2" selection-start-column="8" selection-end-line="2" selection-end-column="8" />
-              <folding>
-                <marker date="1450198615000" expanded="true" signature="120:224" placeholder="..." />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
@@ -78,7 +77,7 @@
       <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/client/vivace/list/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-15.481482">
+            <state vertical-scroll-proportion="-16.185184">
               <caret line="23" column="0" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
               <folding />
             </state>
@@ -95,11 +94,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="app.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="app.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/client/app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-4.9259257">
-              <caret line="7" column="27" selection-start-line="7" selection-start-column="27" selection-end-line="7" selection-end-column="27" />
+            <state vertical-scroll-proportion="0.033928573">
+              <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -127,11 +126,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="controller_test.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="controller_test.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test/client/vivace/list/controller_test.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.3392857">
-              <caret line="10" column="34" selection-start-line="10" selection-start-column="34" selection-end-line="10" selection-end-column="34" />
+            <state vertical-scroll-proportion="-9.148149">
+              <caret line="13" column="0" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -150,18 +149,9 @@
       <file leaf-file-name="template.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/client/vivace/details/template.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-4.75">
-              <caret line="15" column="86" selection-start-line="15" selection-start-column="86" selection-end-line="15" selection-end-column="86" />
-              <folding>
-                <marker date="1450197944000" expanded="true" signature="55:1686" placeholder="..." />
-                <marker date="1450197944000" expanded="true" signature="105:1395" placeholder="..." />
-                <marker date="1450197944000" expanded="true" signature="276:1378" placeholder="..." />
-                <marker date="1450197944000" expanded="true" signature="345:583" placeholder="..." />
-                <marker date="1450197944000" expanded="true" signature="642:869" placeholder="..." />
-                <marker date="1450197944000" expanded="true" signature="929:1103" placeholder="..." />
-                <marker date="1450197944000" expanded="true" signature="1163:1364" placeholder="..." />
-                <marker date="1450197944000" expanded="true" signature="1421:1678" placeholder="..." />
-              </folding>
+            <state vertical-scroll-proportion="-20.357143">
+              <caret line="40" column="8" selection-start-line="40" selection-start-column="8" selection-end-line="40" selection-end-column="8" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -189,11 +179,9 @@
       <file leaf-file-name="controller.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/client/vivace/details/controller.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-9.851851">
-              <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
-              <folding>
-                <marker date="1450197250000" expanded="true" signature="46:319" placeholder="{&quot;avatar&quot;: 'http://www.riomarca.com/clientes/captura/images/avatar.jpg'...}" />
-              </folding>
+            <state vertical-scroll-proportion="-12.666667">
+              <caret line="18" column="0" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -223,7 +211,10 @@
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="-0.0">
               <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
+              <folding>
+                <marker date="1450198615000" expanded="true" signature="100:560" placeholder="{&quot;start&quot;: &quot;node server&quot;...}" />
+                <marker date="1450198615000" expanded="true" signature="698:1941" placeholder="{&quot;angular&quot;: &quot;^1.4.8&quot;...}" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -278,11 +269,11 @@
         <option value="$PROJECT_DIR$/client/static/main.css" />
         <option value="$PROJECT_DIR$/client/vivace/details/index.js" />
         <option value="$PROJECT_DIR$/client/vivace/details/routes.js" />
-        <option value="$PROJECT_DIR$/client/vivace/details/controller.js" />
-        <option value="$PROJECT_DIR$/client/vivace/details/template.html" />
         <option value="$PROJECT_DIR$/client/app.js" />
         <option value="$PROJECT_DIR$/test/client/vivace/details/controller_test.js" />
         <option value="$PROJECT_DIR$/test/client/vivace/list/controller_test.js" />
+        <option value="$PROJECT_DIR$/client/vivace/details/controller.js" />
+        <option value="$PROJECT_DIR$/client/vivace/details/template.html" />
       </list>
     </option>
   </component>
@@ -481,6 +472,10 @@
               <option name="myItemId" value="vivace" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="details" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
@@ -615,9 +610,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <marker date="1450198615000" expanded="true" signature="120:224" placeholder="..." />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -681,7 +674,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <marker date="1450198615000" expanded="true" signature="100:560" placeholder="{&quot;start&quot;: &quot;node server&quot;...}" />
+            <marker date="1450198615000" expanded="true" signature="698:1941" placeholder="{&quot;angular&quot;: &quot;^1.4.8&quot;...}" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -751,16 +747,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.3571428">
-          <caret line="2" column="8" selection-start-line="2" selection-start-column="8" selection-end-line="2" selection-end-column="8" />
-          <folding>
-            <marker date="1450198615000" expanded="true" signature="120:224" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/client/vivace/list/template.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-1.3571428">
@@ -768,14 +754,6 @@
           <folding>
             <marker date="1450198615000" expanded="true" signature="59:65" placeholder="..." />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/vivace/list/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-15.481482">
-          <caret line="23" column="0" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -803,33 +781,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/vivace/details/controller.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-9.851851">
-          <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
-          <folding>
-            <marker date="1450197250000" expanded="true" signature="46:319" placeholder="{&quot;avatar&quot;: 'http://www.riomarca.com/clientes/captura/images/avatar.jpg'...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/vivace/details/template.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-4.75">
-          <caret line="15" column="86" selection-start-line="15" selection-start-column="86" selection-end-line="15" selection-end-column="86" />
-          <folding>
-            <marker date="1450197944000" expanded="true" signature="55:1686" placeholder="..." />
-            <marker date="1450197944000" expanded="true" signature="105:1395" placeholder="..." />
-            <marker date="1450197944000" expanded="true" signature="276:1378" placeholder="..." />
-            <marker date="1450197944000" expanded="true" signature="345:583" placeholder="..." />
-            <marker date="1450197944000" expanded="true" signature="642:869" placeholder="..." />
-            <marker date="1450197944000" expanded="true" signature="929:1103" placeholder="..." />
-            <marker date="1450197944000" expanded="true" signature="1163:1364" placeholder="..." />
-            <marker date="1450197944000" expanded="true" signature="1421:1678" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/client/vivace/details/index.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-2.1111112">
@@ -850,15 +801,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-4.9259257">
-          <caret line="7" column="27" selection-start-line="7" selection-start-column="27" selection-end-line="7" selection-end-column="27" />
-          <folding />
+          <folding>
+            <marker date="1450198615000" expanded="true" signature="100:560" placeholder="{&quot;start&quot;: &quot;node server&quot;...}" />
+            <marker date="1450198615000" expanded="true" signature="698:1941" placeholder="{&quot;angular&quot;: &quot;^1.4.8&quot;...}" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -882,8 +828,48 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/test/client/vivace/list/controller_test.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3392857">
-          <caret line="10" column="34" selection-start-line="10" selection-start-column="34" selection-end-line="10" selection-end-column="34" />
+        <state vertical-scroll-proportion="-9.148149">
+          <caret line="13" column="0" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/vivace/details/template.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-20.357143">
+          <caret line="40" column="8" selection-start-line="40" selection-start-column="8" selection-end-line="40" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/vivace/details/controller.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-12.666667">
+          <caret line="18" column="0" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-1.3571428">
+          <caret line="2" column="8" selection-start-line="2" selection-start-column="8" selection-end-line="2" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/vivace/list/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-16.185184">
+          <caret line="23" column="0" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.033928573">
+          <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
           <folding />
         </state>
       </provider>
