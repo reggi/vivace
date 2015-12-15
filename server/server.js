@@ -29,6 +29,6 @@ app.get('/', (req, res) => {
   });
 });
 
-app.listen(8001, () => {
-  console.log('app is listening on port 8001');
+let listener = app.listen(8001, () => {
+  console.log('\x1b[33m%s:\x1b[4m%s\x1b[0m', 'App is listening on port', listener.address().port);
 });
