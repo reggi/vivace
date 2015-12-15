@@ -7,5 +7,6 @@ export default angular.module('irVivace', [
   require('angular-sanitize'),
   require('./filters'),
   require('./vivace/list'),
-  require('./vivace/details')
+  require('./vivace/details'),
+  require('./vivace/add-edit')
 ]);
