@@ -20,7 +20,7 @@ class DbHelper {
     let flatObj = flat.flatten(obj);
 
     return this.client.incrAsync(model.getKey() + "_counter").then((counter)=> {
-      const recordKey = model.getKey() + ":" + counter;
+      const recordKey = model.getKey() + counter;
       let multi = this.client.multi();
 
       for (let attributeName in flatObj) {
@@ -31,7 +31,7 @@ class DbHelper {
   }
 
   getAll(model) {
-    return this.client.keysAsync(model.getKey() + ":*").then((keys) => {
+    return this.client.keysAsync(model.getKey() + "*").then((keys) => {
       let multi = this.client.multi();
 
       for (let recordKey of keys) {
@@ -43,6 +43,9 @@ class DbHelper {
     });
   }
 
+  get(model, id) {
+    return this.client.hgetallAsync(model.getKey(id));
+  }
 }
 
 module.exports = DbHelper;

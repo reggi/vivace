@@ -13,21 +13,32 @@ const candidateModel = {
     comments: [],
     lastContact: ""
   },
-  getKey() {
-    return this.name + "_" + this.version
+  getKey(id = "") {
+    return this.name + "_" + this.version + ":" + id
   }
 };
 
 let candidate = express.Router();
 let db = new DbHelper();
 
-candidate.get('/', function(req, res, next) {
+candidate.get('/', (req, res, next) => {
   db.getAll(candidateModel).then((result) => {
     res.json(result);
   });
 });
 
-candidate.post('/populate', function (req, res, next) {
+candidate.get('/:id', (req, res, next) => {
+  db.get(candidateModel, req.params.id).then((result) => {
+    if(result) {
+      res.json(result);
+    } else {
+      res.status(404);
+    }
+    res.end();
+  });
+});
+
+candidate.post('/populate', (req, res, next) => {
   let fake_user = {
     firstName: faker.name.firstName(),
     lastName: faker.name.lastName(),
