@@ -1,7 +1,7 @@
 import angular from 'angular';
 
 angular
-  .module('irCandidateLib', [])
+  .module('irDataStoreLib', [])
   .factory('dataStoreService', require('./dataStoreService'));
 
-module.exports = 'irCandidateLib';
+module.exports = 'irDataStoreLib';

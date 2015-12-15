@@ -18,7 +18,7 @@ const dummy = {
 describe('the reverse', () => {
 
   beforeEach(() => {
-    angular.mock.module('irCandidateLib');
+    angular.mock.module('irDataStoreLib');
   });
 
   beforeEach(angular.mock.inject(function(_dataStoreService_){
