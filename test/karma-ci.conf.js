@@ -16,8 +16,6 @@ module.exports = function(config) {
     // frameworks to use
     frameworks: ['mocha'],
 
-    logLevel: config.LOG_DEBUG,
-
     preprocessors: {
       // only specify one entry point
       // and require all tests in there
@@ -32,13 +30,16 @@ module.exports = function(config) {
       ]
     },
 
-    reporters: ['coverage', /*'coveralls',*/ 'spec'],
+    reporters: ['coverage', 'spec'],
 
     coverageReporter: {
       type: 'lcovonly',
       dir: path.join(__dirname, 'coverage'),
       subdir: '.',
-      repoToken: process.env.COVERALLS_REPO_TOKEN
+      instrumenters: {isparta: require('isparta')},
+      instrumenter: {
+        '**/*.js': 'isparta'
+      }
     },
 
     webpack: {
@@ -78,7 +79,6 @@ module.exports = function(config) {
       require("isparta-loader"),
       require("karma-mocha"),
       require("karma-coverage"),
-      require('karma-coveralls'),
       require("karma-phantomjs-launcher"),
       require("karma-spec-reporter"),
       require('karma-babel-preprocessor')
