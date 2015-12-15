@@ -1,6 +1,7 @@
 import express from 'express';
 import DbHelper from '../helper/database';
 import faker from 'faker';
+import bodyParser from 'body-parser';
 
 const candidateModel = {
   name: "candidates",
@@ -20,14 +21,15 @@ const candidateModel = {
 
 let candidate = express.Router();
 let db = new DbHelper();
+let jsonParser = bodyParser.json();
 
-candidate.get('/', (req, res, next) => {
+candidate.get('/', (req, res) => {
   db.getAll(candidateModel).then((result) => {
     res.json(result);
   });
 });
 
-candidate.get('/:id', (req, res, next) => {
+candidate.get('/:id', (req, res) => {
   db.get(candidateModel, req.params.id).then((result) => {
     if(result) {
       res.json(result);
@@ -38,7 +40,16 @@ candidate.get('/:id', (req, res, next) => {
   });
 });
 
-candidate.post('/populate', (req, res, next) => {
+candidate.post('/', jsonParser, (req, res) => {
+  if (!req.body) return res.sendStatus(400).end();
+
+  var newCandidate = req.body;
+  db.add(candidateModel, newCandidate);
+
+  res.status(201).end();
+});
+
+candidate.post('/populate', (req, res) => {
   let fake_user = {
     firstName: faker.name.firstName(),
     lastName: faker.name.lastName(),

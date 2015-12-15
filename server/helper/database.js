@@ -19,7 +19,7 @@ class DbHelper {
   add(model, obj) {
     let flatObj = flat.flatten(obj);
 
-    return this.client.incrAsync(model.getKey() + "_counter").then((counter)=> {
+    return this.client.incrAsync(model.getKey() + "counter").then((counter)=> {
       const recordKey = model.getKey() + counter;
       let multi = this.client.multi();
 

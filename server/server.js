@@ -2,6 +2,7 @@ import express from 'express';
 import http from 'http';
 import fs from 'fs';
 import path from 'path';
+import bodyParser from 'body-parser';
 
 import webpackConfig from '../webpack.config';
 
