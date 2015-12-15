@@ -6,8 +6,6 @@ module.exports = function () {
     candidates: []
   };
 
-  let collectionName = 'candidates';
-
   /**
    * Returns a record with the given id.
    *
