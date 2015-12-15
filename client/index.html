@@ -3,8 +3,37 @@
   <head>
     <title>InRhythm - Vivace</title>
   </head>
+  <style ></style>
   <body>
-    <ng-view/>
+
+  <md-content layout="column">
+    <!--[if lte IE 9]>
+    <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+
+    <section>
+      <md-toolbar class="md-whiteframe-3dp" id="main-header">
+        <div layout="row" layout-padding>
+          <div flex-offset="10" class="md-headline">
+            <a href="#/" id="logo">InRhythm - Vivace</a>
+          </div>
+        </div>
+      </md-toolbar>
+    </section>
+
+    <section flex layout="row">
+      <div flex="10"></div>
+      <div ng-view class="view" flex></div>
+      <div flex="10"></div>
+    </section>
+
+  </md-content>
+
+
+
+
+
+
     <script src="vendor.bundle.js"></script>
     <script src="application.bundle.js"></script>
   </body>
