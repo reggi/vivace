@@ -12,4 +12,5 @@ describe('the vivace list controller', () => {
     chai.expect(ctrl.users).not.to.be.null;
   });
 
+
 });
