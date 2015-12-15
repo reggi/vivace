@@ -2,7 +2,7 @@ import express from 'express';
 import DbHelper from '../helper/database';
 import faker from 'faker';
 
-const model = {
+const candidateModel = {
   name: "candidates",
   version: "1",
   schema: {
@@ -22,9 +22,9 @@ let candidate = express.Router();
 let db = new DbHelper();
 
 candidate.get('/', function(req, res, next) {
-  db.getAll(model);
-
-  next();
+  db.getAll(candidateModel).then((result) => {
+    res.json(result);
+  });
 });
 
 candidate.post('/populate', function (req, res, next) {
@@ -37,7 +37,7 @@ candidate.post('/populate', function (req, res, next) {
     lastContact: faker.date.past()
   };
 
-  db.add(model, fake_user).then((result) => {
+  db.add(candidateModel, fake_user).then((result) => {
     res.send(fake_user);
   });
 

@@ -1,5 +1,5 @@
 import redis from 'redis';
-import flatten from 'flat';
+import flat from 'flat';
 import bluebird from 'bluebird';
 
 class DbHelper {
@@ -17,7 +17,7 @@ class DbHelper {
   }
 
   add(model, obj) {
-    let flatObj = flatten(obj);
+    let flatObj = flat.flatten(obj);
 
     return this.client.incrAsync(model.getKey() + "_counter").then((counter)=> {
       const recordKey = model.getKey() + ":" + counter;
@@ -30,8 +30,17 @@ class DbHelper {
     });
   }
 
-  getAll(type) {
-    return this.client.getAsync(type);
+  getAll(model) {
+    return this.client.keysAsync(model.getKey() + ":*").then((keys) => {
+      let multi = this.client.multi();
+
+      for (let recordKey of keys) {
+          multi.hgetall(recordKey);
+      }
+      return multi.execAsync().then((result) => {
+          return flat.unflatten(result);
+      });
+    });
   }
 
 }
