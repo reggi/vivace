@@ -10,9 +10,4 @@ module.exports = function() {
     phone:'1234567890',
     lastContact :'Last contacted a few seconds ago'
   };
-  this.edit = () => {
-    console.log('hello edit');
-  };
-
-
 };
