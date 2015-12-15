@@ -1,8 +1,5 @@
 'use strict';
 
-const faker = require('faker');
-const fs = require('fs');
-
 module.exports = function () {
 
   let collections = {
