@@ -76,10 +76,5 @@ module.exports = function () {
 
   let exports = {all, add, get, update};
 
-  exports.all = all;
-  exports.add = add;
-  exports.get = get;
-  exports.update = update;
-
   return exports;
 };
