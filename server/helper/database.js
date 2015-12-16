@@ -18,15 +18,15 @@ class DbHelper {
   }
 
   _storeObjectAtKey(model, flatObj, key) {
-      let multi = this.client.multi();
-      let flatModelSchema = flat.flatten(model.schema);
+    let multi = this.client.multi();
+    let flatModelSchema = flat.flatten(model.schema);
 
-      for (let attributeName in flatModelSchema) {
-        if(flatObj[attributeName]) {
-          multi.hset(key, attributeName, flatObj[attributeName]);
-        }
+    for (let attributeName in flatModelSchema) {
+      if(flatObj[attributeName]) {
+        multi.hset(key, attributeName, flatObj[attributeName]);
       }
-      return multi.execAsync();
+    }
+    return multi.execAsync();
   }
 
   add(model, obj) {
@@ -42,11 +42,11 @@ class DbHelper {
     let flatObj = flat.flatten(obj);
     return this.client.getAsync(model.getKey("counter")).then((counter)=> {
       if(id > counter) {
-          return null;
+        return null;
       }
 
       const recordKey = model.getKey(id);
-      return this._storeObjectAtKey(flatObj, obj, recordKey)
+      return this._storeObjectAtKey(model, flatObj, recordKey)
     });
   }
 
@@ -59,10 +59,10 @@ class DbHelper {
       let multi = this.client.multi();
 
       for (let recordKey of keys) {
-          multi.hgetall(recordKey);
+        multi.hgetall(recordKey);
       }
       return multi.execAsync().then((result) => {
-          return flat.unflatten(result);
+        return flat.unflatten(result);
       });
     });
   }

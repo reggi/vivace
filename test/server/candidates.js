@@ -8,13 +8,12 @@ var DbHelper = proxyquire('../../server/helper/database', {
   'redis': redis_mock
 });
 
-
 var candidates = proxyquire('../../server/routes/candidates', {
   '../helper/database': DbHelper
 });
 
-describe('server', () => {
-  it('should server index.html', (done) => {
-    "10".should.beEqual("10");
+describe('Candidate', () => {
+  it('should serve index.html', (done) => {
+    "10".should.equal("10");
   })
 })

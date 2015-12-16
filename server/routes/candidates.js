@@ -3,7 +3,10 @@ import DbHelper from '../helper/database';
 import faker from 'faker';
 import bodyParser from 'body-parser';
 
-const candidateModel = {
+let db = new DbHelper();
+let jsonParser = bodyParser.json();
+
+let candidateModel = {
   name: "candidates",
   version: "1",
   schema: {
@@ -19,65 +22,77 @@ const candidateModel = {
   }
 };
 
-let candidate = express.Router();
-let db = new DbHelper();
-let jsonParser = bodyParser.json();
+class Candidates {
+  constructor() {
 
-candidate.get('/', (req, res) => {
-  db.getAll(candidateModel).then((result) => {
-    res.json(result);
-  });
-});
+    this.router = express.Router();
 
-candidate.get('/:id', (req, res) => {
-  db.get(candidateModel, req.params.id).then((result) => {
-    if(result) {
+    this.router.get('/', this.getAll);
+
+    this.router.get('/:id', this.getById);
+
+    this.router.put('/:id', jsonParser, this.update);
+
+    this.router.post('/', jsonParser, this.add);
+
+    this.router.post('/populate', this.populate);
+  }
+
+  getAll(req, res) {
+    db.getAll(candidateModel).then((result) => {
       res.json(result);
-    } else {
-      res.status(404);
-    }
-    res.end();
-  });
-});
+    });
+  }
 
-candidate.put('/:id', jsonParser, (req, res) => {
-  if (!req.body) return res.sendStatus(400).end();
+  getById(req, res) {
+    db.get(candidateModel, req.params.id).then((result) => {
+      if(result) {
+        res.json(result);
+      } else {
+        res.status(404);
+      }
+      res.end();
+    });
+  }
 
-  var updatedFields = req.body;
+  add(req, res) {
+    if (!req.body) return res.sendStatus(400).end();
 
-  db.update(candidateModel, req.params.id, updatedFields).then((result) => {
-    if(result) {
-      res.status(204);
-    } else {
-      res.status(404);
-    }
-    res.end();
-  });
-});
+    var newCandidate = req.body;
+    db.add(candidateModel, newCandidate).then((result) => {
+      res.status(201).end();
+    });
+  }
 
-candidate.post('/', jsonParser, (req, res) => {
-  if (!req.body) return res.sendStatus(400).end();
+  update(req, res) {
+    if (!req.body) return res.sendStatus(400).end();
 
-  var newCandidate = req.body;
-  db.add(candidateModel, newCandidate).then((result) => {
-    res.status(201).end();
-  });
-});
+    var updatedFields = req.body;
 
-candidate.post('/populate', (req, res) => {
-  let fake_user = {
-    firstName: faker.name.firstName(),
-    lastName: faker.name.lastName(),
-    shortDescription: faker.lorem.sentence(),
-    avatar: faker.internet.avatar(),
-    comments: [],
-    lastContact: faker.date.past()
-  };
+    db.update(candidateModel, req.params.id, updatedFields).then((result) => {
+      if(result) {
+        res.status(204);
+      } else {
+        res.status(404);
+      }
+      res.end();
+    });
+  }
 
-  db.add(candidateModel, fake_user).then((result) => {
-    res.send(fake_user);
-  });
+  populate(req, res) {
+    let fake_user = {
+      firstName: faker.name.firstName(),
+      lastName: faker.name.lastName(),
+      shortDescription: faker.lorem.sentence(),
+      avatar: faker.internet.avatar(),
+      comments: [],
+      lastContact: faker.date.past()
+    };
 
-});
+    db.add(candidateModel, fake_user).then((result) => {
+      res.send(fake_user);
+    });
+  }
+}
 
-module.exports = candidate;
+module.exports = new Candidates();
