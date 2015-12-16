@@ -17,7 +17,7 @@ module.exports = {
   },
   output: {
     filename: 'application.bundle.js',
-    path: '/'
+    path: path.join(__dirname, 'dist')
   },
   module: {
     preLoaders: [

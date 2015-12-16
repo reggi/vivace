@@ -18,9 +18,13 @@ if (process.env.NODE_ENV !== 'production') {
 
   app.use(webpackDevMiddleware(compiler, {
     noInfo: false,
-    publicPath: '/'
+    publicPath: '/client'
   }));
+} else {
+  app.get('/client', express.static(path.join(__dirname, '../dist')))
 }
+
+
 
 app.get('/', (req, res) => {
   fs.readFile(path.join(__dirname, '../client/index.html'), (err, info) => {
