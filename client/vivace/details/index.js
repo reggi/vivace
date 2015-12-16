@@ -6,7 +6,8 @@ angular.module('irCandidateDetails', [
   require('angular-animate'),
   require('angular-sanitize'),
   require('angular-material'),
-  require('angular-route')
+  require('angular-route'),
+  require('../lib'),
 ])
 .controller('candidateDetailsController', require('./controller'))
 .provider('candidateDetailsConfig', require('./configurationProvider'))

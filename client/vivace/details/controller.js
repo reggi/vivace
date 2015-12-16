@@ -1,6 +1,6 @@
 
 
-module.exports = function() {
+module.exports = function(dataStoreService) {
   this.user = {
     avatar : 'http://www.riomarca.com/clientes/captura/images/avatar.jpg',
     firstName:'Jimit',

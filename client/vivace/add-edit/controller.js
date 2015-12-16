@@ -1,6 +1,6 @@
 
 
-module.exports = function(regexProvider, $location, $routeParams) {
+module.exports = function(regexProvider, $location, $routeParams, dataStoreService) {
   this.regex = regexProvider;
   this.details = {};
   if($routeParams.id !== 'new') {
