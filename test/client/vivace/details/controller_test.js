@@ -1,6 +1,3 @@
-/**
- * Created by jimit on 12/15/15.
- */
 const chai =  require('chai');
 
 
