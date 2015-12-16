@@ -1,5 +1,6 @@
 import redis from 'redis';
 import flat from 'flat';
+import process from 'process';
 import bluebird from 'bluebird';
 
 class DbHelper {
@@ -9,7 +10,7 @@ class DbHelper {
     bluebird.promisifyAll(redis.RedisClient.prototype);
     bluebird.promisifyAll(redis.Multi.prototype);
 
-    this.client = redis.createClient("32768", "192.168.99.100");
+    this.client = redis.createClient(process.env.REDIS_PORT, process.env.REDIS_HOST);
 
     this.client.on('error', (err) => {
       console.log('Error ' + err);
