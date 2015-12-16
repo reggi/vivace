@@ -7,7 +7,8 @@ angular.module('irCandidateList', [
   require('angular-animate'),
   require('angular-sanitize'),
   require('angular-material'),
-  require('angular-route')
+  require('angular-route'),
+  require('../lib')
 ])
 .controller('candidateListController', require('./controller'))
 .provider('candidateListConfig', require('./configurationProvider'))
