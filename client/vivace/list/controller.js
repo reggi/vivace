@@ -1,6 +1,5 @@
-module.exports = function() {
+module.exports = function(CandidateModel) {
 
-  this.users = [];
-
-
+  //this.users = CandidateModel.all('candidates');
+    this.users = [];
 };
