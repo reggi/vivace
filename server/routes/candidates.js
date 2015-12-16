@@ -60,7 +60,6 @@ candidate.post('/', jsonParser, (req, res) => {
 
   var newCandidate = req.body;
   db.add(candidateModel, newCandidate).then((result) => {
-    console.log(result);
     res.status(201).end();
   });
 });
