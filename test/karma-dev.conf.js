@@ -50,6 +50,9 @@ module.exports = function(config) {
       externals: {
         'angular': 'window.angular'
       },
+      plugins: [
+        new webpack.DefinePlugin({'DATA_SOURCE_URL': process.env.DATA_SOURCE_URL || "'http://localhost:3000/'"})
+      ],
       resolve: {
         modulesDirectories: [
           "",
