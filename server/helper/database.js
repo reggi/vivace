@@ -16,18 +16,38 @@ class DbHelper {
     });
   }
 
-  add(model, obj) {
-    let flatObj = flat.flatten(obj);
-
-    return this.client.incrAsync(model.getKey() + "counter").then((counter)=> {
-      const recordKey = model.getKey() + counter;
+  _storeObjectAtKey(model, flatObj, key) {
       let multi = this.client.multi();
 
       for (let attributeName in flatObj) {
-        multi.hset(recordKey, attributeName, flatObj[attributeName]);
+        multi.hset(key, attributeName, flatObj[attributeName]);
       }
       return multi.execAsync();
+  }
+
+  add(model, obj) {
+    let flatObj = flat.flatten(obj);
+
+    return this.client.incrAsync(model.getKey("counter")).then((counter)=> {
+      const recordKey = model.getKey(counter);
+      return this._storeObjectAtKey(flatObj, obj, recordKey)
     });
+  }
+
+  update(model, id, obj) {
+    let flatObj = flat.flatten(obj);
+    return this.client.getAsync(model.getKey("counter")).then((counter)=> {
+      if(id > counter) {
+          return null;
+      }
+
+      const recordKey = model.getKey(id);
+      return this._storeObjectAtKey(flatObj, obj, recordKey)
+    });
+  }
+
+  get(model, id) {
+    return this.client.hgetallAsync(model.getKey(id));
   }
 
   getAll(model) {
@@ -41,10 +61,6 @@ class DbHelper {
           return flat.unflatten(result);
       });
     });
-  }
-
-  get(model, id) {
-    return this.client.hgetallAsync(model.getKey(id));
   }
 }
 

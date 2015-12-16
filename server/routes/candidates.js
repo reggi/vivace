@@ -40,13 +40,29 @@ candidate.get('/:id', (req, res) => {
   });
 });
 
+candidate.put('/:id', jsonParser, (req, res) => {
+  if (!req.body) return res.sendStatus(400).end();
+
+  var updatedFields = req.body;
+
+  db.update(candidateModel, req.params.id, updatedFields).then((result) => {
+    if(result) {
+      res.status(204);
+    } else {
+      res.status(404);
+    }
+    res.end();
+  });
+});
+
 candidate.post('/', jsonParser, (req, res) => {
   if (!req.body) return res.sendStatus(400).end();
 
   var newCandidate = req.body;
-  db.add(candidateModel, newCandidate);
-
-  res.status(201).end();
+  db.add(candidateModel, newCandidate).then((result) => {
+    console.log(result);
+    res.status(201).end();
+  });
 });
 
 candidate.post('/populate', (req, res) => {
