@@ -1,6 +1,5 @@
-
-
 module.exports = function() {
+
   this.users =[
     {
       avatar : 'http://www.riomarca.com/clientes/captura/images/avatar.jpg',
@@ -32,6 +31,7 @@ module.exports = function() {
 
     }
   ];
+
 
 
 
