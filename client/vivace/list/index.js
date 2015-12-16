@@ -1,5 +1,4 @@
 import angular from 'angular';
-import 'angular-material/angular-material.css';
 import routes from './routes';
 
 angular.module('irCandidateList', [
