@@ -5,6 +5,7 @@ module.exports = function() {
 
   for (var i = 0; i < 80; i++) {
     output.push({
+      id: i,
       firstName: faker.name.firstName(),
       lastName: faker.name.lastName(),
       shortDescription: faker.lorem.sentence(),

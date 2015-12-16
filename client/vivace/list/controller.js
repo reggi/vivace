@@ -1,3 +1,5 @@
-module.exports = function(dataStoreService) {
-  this.users = dataStoreService.all('candidates');
+module.exports = function() {
+  // use candidateService.all() to get a list of all candidates
+  this.status = 'red';
+
 };
