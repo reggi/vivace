@@ -38,3 +38,5 @@ let listener = app.listen(8001, () => {
 
 //Registering our routes
 app.use('/api', apiRouter);
+
+module.exports = app;
