@@ -1,6 +1,4 @@
-
-
-var testsContext = require.context(".", true, /_test$/);
+var testsContext = require.context("./client", true, /_test$/);
 testsContext.keys().forEach(testsContext);
 var chai =  require('chai');
 chai.should();

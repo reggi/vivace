@@ -5,10 +5,11 @@
   "main": "index.js",
   "scripts": {
     "start": "node server",
-    "test": "node ./node_modules/karma/bin/karma start test/karma-dev.conf.js --single-run --browsers PhantomJS",
+    "test": "node ./node_modules/karma/bin/karma start test/karma-dev.conf.js --single-run --browsers PhantomJS && npm run test-server",
     "test-watch": "node ./node_modules/karma/bin/karma start test/karma-dev.conf.js --browsers PhantomJS",
-    "test-ci": "node ./node_modules/karma/bin/karma start test/karma-ci.conf.js --single-run --browsers PhantomJS",
-    "coverage-push": "cat $(pwd)/test/coverage/lcov.info | ./node_modules/.bin/coveralls"
+    "test-ci": "node ./node_modules/karma/bin/karma start test/karma-ci.conf.js --single-run --browsers PhantomJS && npm run test-server",
+    "coverage-push": "cat $(pwd)/test/coverage/lcov.info | ./node_modules/.bin/coveralls",
+    "test-server": "./node_modules/.bin/mocha -r ./test/mocha_helpers.js -R spec --recursive test/server"
   },
   "author": "",
   "license": "ISC",
