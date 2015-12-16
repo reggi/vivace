@@ -1,6 +1,6 @@
 'use strict';
 
-module.exports = function () {
+module.exports = function() {
 
   let collections = {
     candidates: []
@@ -13,8 +13,10 @@ module.exports = function () {
    * @return {Promise<record>}
    */
   function get(recordId, collectionName) {
-    return new Promise((resolve, reject) => {
-      const result = collections[collectionName]
+    return new Promise((resolve) => {
+      let result;
+
+      result = collections[collectionName]
         .filter((record) => {
           if(record.$id === recordId) {
             return record;
@@ -30,7 +32,7 @@ module.exports = function () {
    * @return {Promise<Array>} array of records.
    */
   function all(collectionName) {
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve) => {
       resolve(collections[collectionName]);
     });
   }
@@ -42,7 +44,7 @@ module.exports = function () {
    * @return {Promise<record>}
    */
   function add(details, collectionName) {
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve) => {
       details.$id = 1;
       collections[collectionName].push(details);
 
@@ -57,7 +59,7 @@ module.exports = function () {
    * @return {Promise<record>}
    */
   function update(details, collectionName) {
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve) => {
       let collection = collections[collectionName];
 
       collection.forEach((record) => {
