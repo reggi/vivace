@@ -1,0 +1,107 @@
+.browsehappy {
+  margin: 0.2em 0;
+  background: #ccc;
+  color: #000;
+  padding: 0.2em 0;
+}
+
+body {
+  padding: 0;
+}
+
+#main-header {
+  background-color: #EF501F;
+}
+
+.container {
+  margin: auto;
+  width: 100%;
+  max-width: 700px;
+}
+
+.fire-list-headline {
+  text-decoration: none;
+  color: rgba(0, 0, 0, 0.870588);
+}
+
+.comment-link {
+  font-size: 0.8em;
+  color: #a5a5a5;
+}
+
+.nav-links {
+  text-align: right;
+  padding: 15px;
+  margin: 0 !important;
+}
+
+.fire-list h1 {
+  margin: 0;
+}
+
+.fire-list h1 a {
+  color: #000;
+}
+
+.avatar {
+  width: 100%;
+  max-width: 100px;
+  max-height: 100px;
+  margin: 8px;
+}
+
+.avatar.avatar-lg {
+  max-width: 200px;
+  max-height: 200px;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+.add-candidate {
+  position: fixed !important;
+  bottom: 20px;
+  right: 20px;
+}
+
+.add-candidate a {
+  color: #eee;
+  font-size: 4em;
+  position: relative;
+  top: -6px;
+  left: 1px;
+  text-decoration: none;
+}
+
+/*
+Login page CSS
+*/
+.login-required button.google-sign-in {
+    display: block;
+    background: #dc4e41;
+    color: white;
+}
+
+.login-required .login-message{
+    display: block;
+}
+/*
+Login page CSS ends
+*/
+
+/*
+Candidates page CSS
+*/
+.border-bottom-none{
+  background-image: none !important;
+}
+.short-description{
+  margin-left: 36px;
+}
+comments md-list{
+  padding: 0 !important;
+}
+/*
+Candidates page CSS ends
+*/
