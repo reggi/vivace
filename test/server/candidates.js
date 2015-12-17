@@ -140,7 +140,7 @@ describe('Candidate API', () => {
       let request, response, data;
       beforeEach(()=> {
         request  = httpMocks.createRequest({
-          method: 'GET',
+          method: 'PUT',
           url: '/api/candidates/3'
         });
         response = httpMocks.createResponse();
@@ -164,6 +164,29 @@ describe('Candidate API', () => {
         candidates.update(request, response);
 
         response.statusCode.should.equal(404);
+        response._isEndCalled().should.be.ok;
+      });
+  });
+
+  describe('should add a candidate via POST candidates/', () => {
+      let request, response, data;
+      beforeEach(()=> {
+        request  = httpMocks.createRequest({
+          method: 'POST',
+          url: '/api/candidates'
+        });
+        response = httpMocks.createResponse();
+
+        DbHelper.prototype.add = createPromise(1);
+
+        candidates.add(request, response);
+      });
+
+      it('returns 201 on success', () => {
+        response.statusCode.should.equal(201);
+      });
+
+      it('ends successfully', () => {
         response._isEndCalled().should.be.ok;
       });
   });
