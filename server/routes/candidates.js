@@ -26,21 +26,17 @@ class Candidates {
   constructor() {
 
     this.router = express.Router();
-
     this.router.get('/', this.getAll);
-
     this.router.get('/:id', this.getById);
-
     this.router.put('/:id', jsonParser, this.update);
-
     this.router.post('/', jsonParser, this.add);
-
     this.router.post('/populate', this.populate);
   }
 
   getAll(req, res) {
     db.getAll(candidateModel).then((result) => {
       res.json(result);
+      res.end();
     });
   }
 
