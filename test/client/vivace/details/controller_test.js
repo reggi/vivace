@@ -8,7 +8,7 @@ describe('the vivace list controller', () => {
     ctrl = $controller(require('../../../../client/vivace/details/controller'));
   }));
 
-  it('should not be null for user', () => {
+  it('should not be null user', () => {
     chai.expect(ctrl.user).not.to.be.null;
   });
 
