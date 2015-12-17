@@ -17,10 +17,14 @@ class DbHelper {
     });
   }
 
-  _storeObjectAtKey(model, flatObj, key) {
+  _storeObjectAtKey(model, flatObj, id) {
     let multi = this.client.multi();
     let flatModelSchema = flat.flatten(model.schema);
 
+    let key = model.getKey(id);
+    let indexKey = model.getKey("index");
+
+    multi.hset(indexKey, id, key);
     for (let attributeName in flatModelSchema) {
       if(flatObj[attributeName]) {
         multi.hset(key, attributeName, flatObj[attributeName]);
@@ -30,11 +34,12 @@ class DbHelper {
   }
 
   add(model, obj) {
-    let flatObj = flat.flatten(obj);
+    let flatObj;
 
     return this.client.incrAsync(model.getKey("counter")).then((counter)=> {
-      const recordKey = model.getKey(counter);
-      return this._storeObjectAtKey(model, flatObj, recordKey)
+      obj.id = counter;
+      flatObj = flat.flatten(obj);
+      return this._storeObjectAtKey(model, flatObj, counter)
     });
   }
 
@@ -45,8 +50,7 @@ class DbHelper {
         return null;
       }
 
-      const recordKey = model.getKey(id);
-      return this._storeObjectAtKey(model, flatObj, recordKey)
+      return this._storeObjectAtKey(model, flatObj, id)
     });
   }
 
@@ -55,15 +59,21 @@ class DbHelper {
   }
 
   getAll(model) {
-    return this.client.keysAsync(model.getKey() + "*").then((keys) => {
-      let multi = this.client.multi();
+    return this.client.hgetallAsync(model.getKey("index")).then((keys) => {
+      if(keys) {
+        let multi = this.client.multi();
 
-      for (let recordKey of keys) {
-        multi.hgetall(recordKey);
+        for (let index in keys) {
+          if(keys.hasOwnProperty(index)) {
+            multi.hgetall(keys[index]);
+          }
+        }
+        return multi.execAsync().then((result) => {
+          return flat.unflatten(result);
+        });
+      } else {
+          return [];
       }
-      return multi.execAsync().then((result) => {
-        return flat.unflatten(result);
-      });
     });
   }
 }

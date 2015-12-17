@@ -10,6 +10,7 @@ let candidateModel = {
   name: "candidates",
   version: "1",
   schema: {
+    id: 0,
     firstName: "",
     lastName: "",
     shortDescription: "",
