@@ -82,7 +82,6 @@ module.exports = function(config) {
       require("isparta-loader"),
       require("karma-mocha"),
       require("karma-coverage"),
-      require('karma-coveralls'),
       require("karma-phantomjs-launcher"),
       require("karma-spec-reporter"),
       require('karma-babel-preprocessor')
