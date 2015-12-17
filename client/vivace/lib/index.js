@@ -1,7 +1,7 @@
 import angular from 'angular';
 
 angular
-  .module('irDataStoreLib', [])
-  .factory('dataStoreService', require('./dataStoreService'));
+  .module('irVivaceModels', [require('angular-resource')])
+  .factory('CandidateModel', require('./candidateModel'));
 
-module.exports = 'irDataStoreLib';
+module.exports = 'irVivaceModels';

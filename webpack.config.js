@@ -1,9 +1,6 @@
-
 var webpack = require('webpack');
 var path = require('path');
-
-
-var nodeModulesDir = path.join(__dirname, 'node_modules');
+var nodeModulesDir = path.join(__dirname, '../node_modules');
 
 module.exports = {
   entry: {
@@ -14,7 +11,8 @@ module.exports = {
       'angular-aria',
       'angular-animate',
       'angular-resource',
-      'angular-material'
+      'angular-material',
+      'angular-route'
     ]
   },
   output: {
@@ -33,6 +31,7 @@ module.exports = {
     ]
   },
   plugins: [
-    new webpack.optimize.CommonsChunkPlugin("vendor", "vendor.bundle.js")
+    new webpack.optimize.CommonsChunkPlugin("vendor", "vendor.bundle.js"),
+    new webpack.DefinePlugin({'DATA_SOURCE_URL': process.env.DATA_SOURCE_URL || "'http://localhost:3000'"})
   ]
 };

@@ -1,7 +1,7 @@
 const chai =  require('chai');
 
 
-describe('the vivace list controller', () => {
+describe('the vivace add-edit controller', () => {
   let ctrl,
       scope,
       routeParams;

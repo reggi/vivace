@@ -7,7 +7,7 @@ angular.module('irCandidateAddEdit', [
   require('angular-sanitize'),
   require('angular-material'),
   require('angular-route'),
-  require('../lib'),
+  require('../lib')
 ])
 .controller('candidateAddEditController', require('./controller'))
 .provider('candidateAddEditConfig', require('./configurationProvider'))

@@ -1,5 +1,5 @@
-module.exports = function(dataStoreService) {
-  this.users = dataStoreService.all('candidates');
-
+module.exports = function(CandidateModel) {
+  //this.users = CandidateModel.get('candidates');
+  this.users = {};
 };
 
