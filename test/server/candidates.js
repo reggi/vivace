@@ -39,25 +39,28 @@ const candidateArray = [
 const mockGetAll = candidateArray;
 const mockGet = candidateArray[0];
 
+let createPromise = (returnVal) => {
+    return () => {
+      return {
+          then(callback) {
+              callback(returnVal);
+          }
+      };
+    };
+};
+
 describe('Candidate API', () => {
   beforeEach(() => {
     DbHelper = proxyquire('../../server/helper/database', {
       'redis': redis_mock
     });
 
-    DbHelper.prototype.getAll = (model) => {
-      return {
-        then(callback) {   
-          callback(mockGetAll);
-        }
-      };
-    };
     candidates = proxyquire('../../server/routes/candidates', {
       '../helper/database': DbHelper
     });
   });
 
-  describe('should serve an array of candidates on /', () => {
+  describe('should serve candidates on GET candidates/', () => {
       let request, response, data;
       beforeEach(()=> {
         request  = httpMocks.createRequest({
@@ -65,6 +68,8 @@ describe('Candidate API', () => {
           url: '/api/candidates'
         });
         response = httpMocks.createResponse();
+
+        DbHelper.prototype.getAll = createPromise(mockGetAll);
 
         candidates.getAll(request, response);
 
@@ -86,5 +91,48 @@ describe('Candidate API', () => {
       it('returns valid data', () => {
         data.should.be.eql(mockGetAll);
       });
-  })
+  });
+
+  describe('should serve a candidate on GET candidates/:id', () => {
+      let request, response, data;
+      beforeEach(()=> {
+        request  = httpMocks.createRequest({
+          method: 'GET',
+          url: '/api/candidates/4'
+        });
+        response = httpMocks.createResponse();
+
+        DbHelper.prototype.get = createPromise(mockGet);
+
+        candidates.getById(request, response);
+
+        data = JSON.parse(response._getData());
+      });
+
+      it('returns 200', () => {
+        response.statusCode.should.equal(200);
+      });
+
+      it('ends successfully', () => {
+        response._isEndCalled().should.be.ok;
+      });
+
+      it('returns JSON', () => {
+        response._isJSON().should.be.ok;
+      });
+
+      it('returns valid data', () => {
+        data.should.be.eql(mockGet);
+      });
+
+      it('returns 404 on invalid id', () => {
+        DbHelper.prototype.get = createPromise(null);
+
+        candidates.getById(request, response);
+        data = JSON.parse(response._getData());
+
+        response.statusCode.should.equal(404);
+        response._isEndCalled().should.be.ok;
+      });
+  });
 })
