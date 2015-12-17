@@ -1,0 +1,48 @@
+<div layout="column" ng-cloak="" class="inputdemoIcons">
+
+  <md-content flex layout layout-align="center">
+
+    <paper flex="20">
+
+      <img ng-src="{{details.user.avatar}}" class="avatar avatar-lg" alt="{{user.firstName}} {{user.lastName}}" />
+
+    </paper>
+
+    <paper flex>
+      <br>
+      <md-input-container class="md-icon-float md-block">
+        <!-- Use floating label instead of placeholder -->
+        <label>Name</label>
+        <input ng-model="details.user.firstName" type="text" class="short-description border-bottom-none" disabled="true">
+      </md-input-container>
+
+      <md-input-container class="md-icon-float md-block">
+        <!-- Use floating placeholder instead of label -->
+        <input ng-model="details.user.email" type="email" placeholder="Email" class="short-description border-bottom-none" disabled="true">
+      </md-input-container>
+
+      <md-input-container  class="md-icon-float md-block">
+        <input ng-model="details.user.phone" type="text" placeholder="Phone Number" class="short-description border-bottom-none" disabled="true">
+      </md-input-container>
+
+      <md-input-container class="md-icon-float md-block ">
+        <label>Short Description</label>
+        <textarea ng-model="details.user.shortDescription" class="short-description border-bottom-none" disabled="true"></textarea>
+      </md-input-container>
+
+    </paper>
+
+  </md-content>
+
+  <section layout="row">
+
+    <md-button class="md-raised md-warn" href="#/edit/{{details.user.$id}}">Edit</md-button>
+
+    <!--
+      commented out until comments are implemented
+      <md-button class="md-raised md-primary" ng-if="false">Comment</md-button>
+    -->
+
+  </section>
+
+</div>

@@ -1,5 +1,5 @@
 module.exports = function(CandidateModel) {
-  //this.users = CandidateModel.get('candidates');
-  this.users = {};
+  //this.users = CandidateModel.all('candidates');
+    this.users = {};
 };
 
