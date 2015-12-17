@@ -135,4 +135,36 @@ describe('Candidate API', () => {
         response._isEndCalled().should.be.ok;
       });
   });
-})
+
+  describe('should update candidates via PUT candidates/:id', () => {
+      let request, response, data;
+      beforeEach(()=> {
+        request  = httpMocks.createRequest({
+          method: 'GET',
+          url: '/api/candidates/3'
+        });
+        response = httpMocks.createResponse();
+
+        DbHelper.prototype.update = createPromise(1);
+
+        candidates.update(request, response);
+      });
+
+      it('returns 204 on success', () => {
+        response.statusCode.should.equal(204);
+      });
+
+      it('ends successfully', () => {
+        response._isEndCalled().should.be.ok;
+      });
+
+      it('returns 404 on failure', () => {
+        DbHelper.prototype.update = createPromise(null);
+
+        candidates.update(request, response);
+
+        response.statusCode.should.equal(404);
+        response._isEndCalled().should.be.ok;
+      });
+  });
+});
