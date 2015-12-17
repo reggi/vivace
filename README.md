@@ -19,6 +19,7 @@ For development purposes, install [Docker Toolbox](https://www.docker.com/docker
 Set the following env variable for your Redis DB host and port.
 
 ```export REDIS_PORT=32768```
+
 ```export REDIS_HOST=192.168.99.100```
 
 ## Running tests
