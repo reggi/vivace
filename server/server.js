@@ -26,7 +26,7 @@ if (process.env.NODE_ENV !== 'production') {
 
 
 } else {
-  app.get('/client', express.static(path.join(__dirname, '../dist')))
+  app.use('/client', express.static(path.join(__dirname, '../dist')))
 }
 
 app.get('/', (req, res) => {
