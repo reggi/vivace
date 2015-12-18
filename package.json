@@ -6,6 +6,7 @@
   "scripts": {
     "start": "node server",
     "dev": "./scripts/dev.sh",
+    "build": "node ./node_modules/.bin/webpack",
     "test": "node ./node_modules/karma/bin/karma start test/karma-dev.conf.js --single-run --browsers PhantomJS",
     "test-watch": "node ./node_modules/karma/bin/karma start test/karma-dev.conf.js --browsers PhantomJS",
     "test-ci": "node ./node_modules/karma/bin/karma start test/karma-ci.conf.js --single-run --browsers PhantomJS",
