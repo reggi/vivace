@@ -6,7 +6,6 @@ import bodyParser from 'body-parser';
 
 import webpackConfig from '../webpack.config';
 
-let app = express();
 import apiRouter from './routes';
 
 const app = express();
