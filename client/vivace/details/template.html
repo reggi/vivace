@@ -13,7 +13,7 @@
       <md-input-container class="md-icon-float md-block">
         <!-- Use floating label instead of placeholder -->
         <label>Name</label>
-        <input ng-model="details.user.firstName" type="text" class="short-description border-bottom-none" disabled="true">
+        <input ng-model="details.user.name" type="text" class="short-description border-bottom-none" disabled="true">
       </md-input-container>
 
       <md-input-container class="md-icon-float md-block">
@@ -36,7 +36,7 @@
 
   <section layout="row">
 
-    <md-button class="md-raised md-warn" href="#/edit/{{details.user.$id}}">Edit</md-button>
+    <md-button class="md-raised md-warn" href="#/add/{{details.user.id}}">Edit</md-button>
 
     <!--
       commented out until comments are implemented

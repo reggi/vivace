@@ -32,6 +32,6 @@ module.exports = {
   },
   plugins: [
     new webpack.optimize.CommonsChunkPlugin("vendor", "vendor.bundle.js"),
-    new webpack.DefinePlugin({'DATA_SOURCE_URL': process.env.DATA_SOURCE_URL || "'http://localhost:3000'"})
+    new webpack.DefinePlugin({'DATA_SOURCE_URL': process.env.DATA_SOURCE_URL || "'http://localhost:8001/api'"})
   ]
 };
