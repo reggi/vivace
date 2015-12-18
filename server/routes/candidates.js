@@ -57,6 +57,7 @@ class Candidates {
 
     var newCandidate = req.body;
     db.add(candidateModel, newCandidate).then((result) => {
+      res.json(result)
       res.status(201).end();
     });
   }
@@ -68,6 +69,7 @@ class Candidates {
 
     db.update(candidateModel, req.params.id, updatedFields).then((result) => {
       if(result) {
+        res.json(result);
         res.status(204);
       } else {
         res.status(404);

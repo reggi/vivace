@@ -17,40 +17,40 @@ class DbHelper {
     });
   }
 
-  _storeObjectAtKey(model, flatObj, id) {
+  _storeObjectAtKey(model, obj) {
     let multi = this.client.multi();
+    let flatObj = flat.flatten(obj);
     let flatModelSchema = flat.flatten(model.schema);
 
-    let key = model.getKey(id);
+    let key = model.getKey(obj.id);
     let indexKey = model.getKey("index");
 
-    multi.hset(indexKey, id, key);
+    multi.hset(indexKey, obj.id, key);
     for (let attributeName in flatModelSchema) {
       if(flatObj[attributeName]) {
         multi.hset(key, attributeName, flatObj[attributeName]);
       }
     }
-    return multi.execAsync();
+    return multi.execAsync().then((result) => {
+        return obj;
+    });
   }
 
   add(model, obj) {
-    let flatObj;
-
     return this.client.incrAsync(model.getKey("counter")).then((counter)=> {
       obj.id = counter;
-      flatObj = flat.flatten(obj);
-      return this._storeObjectAtKey(model, flatObj, counter)
+      return this._storeObjectAtKey(model, obj)
     });
   }
 
   update(model, id, obj) {
-    let flatObj = flat.flatten(obj);
     return this.client.getAsync(model.getKey("counter")).then((counter)=> {
       if(id > counter) {
         return null;
       }
 
-      return this._storeObjectAtKey(model, flatObj, id)
+      obj.id = id;
+      return this._storeObjectAtKey(model, obj)
     });
   }
 
