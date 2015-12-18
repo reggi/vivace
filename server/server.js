@@ -5,10 +5,17 @@ import path from 'path';
 
 import webpackConfig from '../webpack.config';
 
-const app = express();
+let app = express();
 
 
 if (process.env.NODE_ENV !== 'production') {
+  const jsonServer = require('json-server');
+  const router = jsonServer.router(require('../scripts/fakeData')());
+
+  app.use(jsonServer.defaults());
+  app.use('/api', router);
+
+
   const webpackDevMiddleware = require('webpack-dev-middleware');
   const webpack = require('webpack');
 
@@ -20,6 +27,8 @@ if (process.env.NODE_ENV !== 'production') {
     noInfo: false,
     publicPath: '/client'
   }));
+
+
 } else {
   app.get('/client', express.static(path.join(__dirname, '../dist')))
 }
