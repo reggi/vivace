@@ -1,8 +1,6 @@
 import express from 'express';
-import http from 'http';
 import fs from 'fs';
 import path from 'path';
-import bodyParser from 'body-parser';
 
 import webpackConfig from '../webpack.config';
 
@@ -14,6 +12,7 @@ const port = process.env.PORT || 8001;
 if (process.env.NODE_ENV !== 'production') {
   const webpackDevMiddleware = require('webpack-dev-middleware');
   const webpack = require('webpack');
+import bodyParser from 'body-parser';
 
   let config = webpackConfig;
 
@@ -32,7 +31,7 @@ app.get('/', (req, res) => {
   });
 });
 
-let listener = app.listen(8001, () => {
+let listener = app.listen(port, () => {
   console.log('\x1b[33m%s:\x1b[4m%s\x1b[0m', 'App is listening on port', listener.address().port);
 });
 

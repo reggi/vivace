@@ -7,19 +7,19 @@ let db = new DbHelper();
 let jsonParser = bodyParser.json();
 
 let candidateModel = {
-  name: "candidates",
-  version: "1",
+  name: 'candidates',
+  version: '1',
   schema: {
     id: 0,
-    firstName: "",
-    lastName: "",
-    shortDescription: "",
-    avatar: "",
+    firstName: '',
+    lastName: '',
+    shortDescription: '',
+    avatar: '',
     comments: [],
-    lastContact: ""
+    lastContact: ''
   },
-  getKey(id = "") {
-    return this.name + "_" + this.version + ":" + id
+  getKey(id = '') {
+    return this.name + '_' + this.version + ':' + id;
   }
 };
 
@@ -55,9 +55,10 @@ class Candidates {
   add(req, res) {
     if (!req.body) return res.sendStatus(400).end();
 
-    var newCandidate = req.body;
+    let newCandidate = req.body;
+
     db.add(candidateModel, newCandidate).then((result) => {
-      res.json(result)
+      res.json(result);
       res.status(201).end();
     });
   }
@@ -65,7 +66,7 @@ class Candidates {
   update(req, res) {
     if (!req.body) return res.sendStatus(400).end();
 
-    var updatedFields = req.body;
+    let updatedFields = req.body;
 
     db.update(candidateModel, req.params.id, updatedFields).then((result) => {
       if(result) {
@@ -79,7 +80,7 @@ class Candidates {
   }
 
   populate(req, res) {
-    let fake_user = {
+    let fakeUser = {
       firstName: faker.name.firstName(),
       lastName: faker.name.lastName(),
       shortDescription: faker.lorem.sentence(),
@@ -88,8 +89,8 @@ class Candidates {
       lastContact: faker.date.past()
     };
 
-    db.add(candidateModel, fake_user).then((result) => {
-      res.send(fake_user);
+    db.add(candidateModel, fakeUser).then(() => {
+      res.send(fakeUser);
     });
   }
 }
