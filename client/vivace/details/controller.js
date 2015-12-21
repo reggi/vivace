@@ -1,7 +1,11 @@
 module.exports = function($location, CandidateModel, $routeParams) {
-  //this.user = CandidateModel.get($routeParams.id);
-  this.user = {};
-  if(!this.user) {
-    $location.path('/not-found'); // TODO: make error page
-  }
+
+  let promise = CandidateModel.get({id: $routeParams.id}).$promise;
+
+  promise.then((data) => {
+    this.user = data;
+    this.user.name = data.firstName + ' ' + data.lastName;
+  }, () => {
+    $location.path('/not-found');
+  });
 };

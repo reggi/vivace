@@ -6,6 +6,7 @@ angular.module('irCandidateAddEdit', [
   require('angular-animate'),
   require('angular-sanitize'),
   require('angular-material'),
+  require('angular-messages'),
   require('angular-route'),
   require('../lib')
 ])

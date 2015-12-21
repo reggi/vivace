@@ -22,7 +22,7 @@
     <md-input-container flex md-is-error="candidateForm.email.$invalid && (candidateForm.$submitted || candidateForm.email.$dirty)">
 
       <label>Email</label>
-      <input name="email" ng-required="true" ng-model="candidate.details.email" ng-pattern="candidate.regex.emailPattern">
+      <input name="email" ng-required="true" ng-model="candidate.details.email" ng-pattern="candidate.regex.EMAILREGEX">
 
       <div ng-messages="candidateForm.email.$error" ng-if="candidateForm.$submitted || candidateForm.email.$touched">
         <div ng-message="required">Email is required.</div>
@@ -34,7 +34,7 @@
     <md-input-container flex md-is-error="candidateForm.phone.$invalid && (candidateForm.$submitted || candidateForm.phone.$dirty)">
 
       <label>Phone number</label>
-      <input name="phone" ng-model="candidate.details.phone" ng-pattern="candidate.regex.phoneNumberPattern">
+      <input name="phone" ng-model="candidate.details.phone" ng-pattern="candidate.regex.PHONEREGEX">
 
       <div ng-messages="candidateForm.pbone.$error" ng-if="candidateForm.$submitted || candidateForm.phone.$touched">
         <div ng-message="required">Phone Number is required.</div>
