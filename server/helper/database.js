@@ -27,7 +27,7 @@ class DbHelper {
 
     multi.hset(indexKey, obj.id, key);
     for (let attributeName in flatModelSchema) {
-      if(flatObj[attributeName]) {
+      if(flatObj[attributeName] === undefined) {
         multi.hset(key, attributeName, flatObj[attributeName]);
       }
     }
