@@ -2,6 +2,7 @@ import express from 'express';
 import DbHelper from '../helper/database';
 import faker from 'faker';
 import bodyParser from 'body-parser';
+import Joi from 'joi';
 
 let db = new DbHelper();
 let jsonParser = bodyParser.json();
@@ -10,16 +11,25 @@ let candidateModel = {
   name: "candidates",
   version: "1",
   schema: {
-    id: 0,
-    firstName: "",
-    lastName: "",
-    shortDescription: "",
-    avatar: "",
-    comments: [],
-    lastContact: ""
+    id: Joi.number().integer().optional(),
+    firstName: Joi.string().required(),
+    lastName: Joi.string().required(),
+    shortDescription: Joi.string().required(),
+    avatar: Joi.string().optional(),
+    comments: Joi.array().optional(),
+    lastContact: Joi.string().optional()
   },
   getKey(id = "") {
     return this.name + "_" + this.version + ":" + id
+  },
+  isValid(body) {
+    var validityFlag = true;
+    if (!body) {
+      validityFlag = false;
+    } else if (Joi.validate(body, this.schema).error) {
+      validityFlag = false;
+    }
+    return validityFlag;
   }
 };
 
@@ -53,7 +63,11 @@ class Candidates {
   }
 
   add(req, res) {
-    if (!req.body) return res.sendStatus(400).end();
+    if (!candidateModel.isValid(req.body)) {
+      res.sendStatus(400);
+      res.end();
+      return;
+    }
 
     var newCandidate = req.body;
     db.add(candidateModel, newCandidate).then((result) => {
@@ -62,7 +76,11 @@ class Candidates {
   }
 
   update(req, res) {
-    if (!req.body) return res.sendStatus(400).end();
+    if (!candidateModel.isValid(req.body)) {
+      res.sendStatus(400);
+      res.end();
+      return;
+    }
 
     var updatedFields = req.body;
 

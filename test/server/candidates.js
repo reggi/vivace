@@ -15,14 +15,14 @@ const candidateArray = [
     "lastName": "Barton",
     "shortDescription": "Est temporibus debitis est et.",
     "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/kazaky999/128.jpg",
-    "comments": "",
+    "comments": [],
     "lastContact": "Wed Feb 04 2015 13:15:32 GMT-0500 (EST)"
   },
   {
     "shortDescription": "Et eos impedit odio error.",
     "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/turkutuuli/128.jpg",
     "lastContact": "Thu May 14 2015 05:07:08 GMT-0400 (EDT)",
-    "comments": "",
+    "comments": [],
     "lastName": "Frami",
     "firstName": "Bertram"
   },
@@ -31,13 +31,15 @@ const candidateArray = [
     "lastName": "Cosby",
     "shortDescription": "Ut velit natus vel et itaque laboriosam qui est quia.",
     "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/dawidwu/128.jpg",
-    "comments": "",
+    "comments": [],
     "lastContact": "Tue Aug 18 2015 08:52:34 GMT-0400 (EDT)"
   }
 ];
 
 const mockGetAll = candidateArray;
 const mockGet = candidateArray[0];
+const mockPost = candidateArray[0];
+const mockPut = candidateArray[0];
 
 let createPromise = (returnVal) => {
     return () => {
@@ -140,6 +142,7 @@ describe('Candidate API', () => {
       let request, response, data;
       beforeEach(()=> {
         request  = httpMocks.createRequest({
+          body: mockPut,
           method: 'PUT',
           url: '/api/candidates/3'
         });
@@ -172,6 +175,7 @@ describe('Candidate API', () => {
       let request, response, data;
       beforeEach(()=> {
         request  = httpMocks.createRequest({
+          body: mockPost,
           method: 'POST',
           url: '/api/candidates'
         });
