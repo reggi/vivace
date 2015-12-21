@@ -4,7 +4,6 @@ FAIL=0
 
 echo "starting dev servers, output will be mixed - press CTRL+c to quit"
 
-./node_modules/.bin/json-server scripts/fakeData.js &
 node server &
 
 
