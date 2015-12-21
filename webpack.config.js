@@ -17,7 +17,7 @@ module.exports = {
   },
   output: {
     filename: 'application.bundle.js',
-    path: '/'
+    path: path.join(__dirname, 'dist')
   },
   module: {
     preLoaders: [
@@ -30,8 +30,9 @@ module.exports = {
       {test: /\.(png|jpg)$/, loader: 'url-loader?limit=8192' } // inline base64 URLs for <=8k images, direct URLs for the rest
     ]
   },
+
   plugins: [
     new webpack.optimize.CommonsChunkPlugin("vendor", "vendor.bundle.js"),
-    new webpack.DefinePlugin({'DATA_SOURCE_URL': process.env.DATA_SOURCE_URL || "'http://localhost:3000'"})
+    new webpack.DefinePlugin({'DATA_SOURCE_URL': process.env.DATA_SOURCE_URL || "'/api'"})
   ]
 };

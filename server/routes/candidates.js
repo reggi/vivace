@@ -8,8 +8,8 @@ let db = new DbHelper();
 let jsonParser = bodyParser.json();
 
 let candidateModel = {
-  name: "candidates",
-  version: "1",
+  name: 'candidates',
+  version: '1',
   schema: {
     id: Joi.number().integer().optional(),
     firstName: Joi.string().required(),
@@ -48,17 +48,19 @@ class Candidates {
     db.getAll(candidateModel).then((result) => {
       res.json(result);
       res.end();
+      return;
     });
   }
 
   getById(req, res) {
     db.get(candidateModel, req.params.id).then((result) => {
-      if(result) {
-        res.json(result);
-      } else {
+      if(!result)  {
         res.status(404);
+        return res.end();
       }
-      res.end();
+
+      res.json(result);
+      return res.end();
     });
   }
 
@@ -69,9 +71,13 @@ class Candidates {
       return;
     }
 
-    var newCandidate = req.body;
+    let newCandidate = req.body;
+
     db.add(candidateModel, newCandidate).then((result) => {
-      res.status(201).end();
+      res.json(result);
+      res.status(201);
+      res.end();
+      return;
     });
   }
 
@@ -82,20 +88,24 @@ class Candidates {
       return;
     }
 
-    var updatedFields = req.body;
+    let updatedFields = req.body;
 
     db.update(candidateModel, req.params.id, updatedFields).then((result) => {
-      if(result) {
-        res.status(204);
-      } else {
-        res.status(404);
+      if(!result)  {
+        res.sendStatus(404);
+        res.end();
+        return;
       }
+
+      res.json(result);
+      res.status(204)
       res.end();
+      return;
     });
   }
 
   populate(req, res) {
-    let fake_user = {
+    let fakeUser = {
       firstName: faker.name.firstName(),
       lastName: faker.name.lastName(),
       shortDescription: faker.lorem.sentence(),
@@ -104,8 +114,8 @@ class Candidates {
       lastContact: faker.date.past()
     };
 
-    db.add(candidateModel, fake_user).then((result) => {
-      res.send(fake_user);
+    db.add(candidateModel, fakeUser).then(() => {
+      res.send(fakeUser);
     });
   }
 }
