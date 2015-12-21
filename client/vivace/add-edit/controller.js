@@ -8,7 +8,7 @@ module.exports = function(regexProvider, $location, $routeParams, CandidateModel
   this.details = {};
   if($routeParams.id !== 'new') {
     this.heading = 'Update Candidate';
-    this.details = {};
+    this.details = CandidateModel.get({id: $routeParams.id});
   }else{
     this.heading = 'Add Candidate';
   }
