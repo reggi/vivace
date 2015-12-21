@@ -12,7 +12,6 @@ const port = process.env.PORT || 8001;
 if (process.env.NODE_ENV !== 'production') {
   const webpackDevMiddleware = require('webpack-dev-middleware');
   const webpack = require('webpack');
-import bodyParser from 'body-parser';
 
   let config = webpackConfig;
 
