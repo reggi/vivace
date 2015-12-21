@@ -38,17 +38,19 @@ class Candidates {
     db.getAll(candidateModel).then((result) => {
       res.json(result);
       res.end();
+      return;
     });
   }
 
   getById(req, res) {
     db.get(candidateModel, req.params.id).then((result) => {
-      if(result) {
-        res.json(result);
-      } else {
+      if(!result)  {
         res.status(404);
+        return res.end();
       }
-      res.end();
+
+      res.json(result);
+      return res.end();
     });
   }
 
@@ -59,7 +61,9 @@ class Candidates {
 
     db.add(candidateModel, newCandidate).then((result) => {
       res.json(result);
-      res.status(201).end();
+      res.status(201);
+      res.end();
+      return;
     });
   }
 
@@ -69,13 +73,16 @@ class Candidates {
     let updatedFields = req.body;
 
     db.update(candidateModel, req.params.id, updatedFields).then((result) => {
-      if(result) {
-        res.json(result);
-        res.status(204);
-      } else {
-        res.status(404);
+      if(!result)  {
+        res.sendStatus(404);
+        res.end();
+        return;
       }
+
+      res.json(result);
+      res.status(204)
       res.end();
+      return;
     });
   }
 
