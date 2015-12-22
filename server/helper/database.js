@@ -44,8 +44,9 @@ class DbHelper {
   }
 
   update(model, id, obj) {
-    return this.client.getAsync(model.getKey('counter')).then((counter)=> {
-      if(id > counter) {
+    let flatObj = flat.flatten(obj);
+    return this.client.getAsync(model.getKey("counter")).then((counter)=> {
+      if(parseInt(id, 10) > parseInt(counter, 10)) {
         return null;
       }
 
