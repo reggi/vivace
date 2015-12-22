@@ -22,7 +22,7 @@
     <md-input-container flex md-is-error="candidateForm.email.$invalid && (candidateForm.$submitted || candidateForm.email.$dirty)">
 
       <label>Email</label>
-      <input name="email" ng-required="false" ng-model="candidate.details.email" ng-pattern="candidate.regex.EMAILREGEX">
+      <input name="email" ng-model="candidate.details.email" ng-pattern="candidate.regex.EMAILREGEX">
 
       <div ng-messages="candidateForm.email.$error" ng-if="candidateForm.$submitted || candidateForm.email.$touched">
         <div ng-message="required">Email is required.</div>
