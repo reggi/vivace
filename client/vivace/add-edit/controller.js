@@ -23,7 +23,7 @@ module.exports = function(regexProvider, $location, $routeParams, CandidateModel
       });
 
     }else{
-      promise = CandidateModel.save().$promise;
+      promise = CandidateModel.save(this.details).$promise;
 
       promise.then((data) => {
         $location.path('/details/' + data.id);
