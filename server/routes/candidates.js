@@ -16,7 +16,7 @@ let candidateModel = {
     lastName: Joi.string().required(),
     shortDescription: Joi.string().required(),
     avatar: Joi.string().optional(),
-    comments: Joi.array().optional(),
+    comments: Joi.any().strip(),
     lastContact: Joi.string().optional()
   },
   getKey(id = "") {
