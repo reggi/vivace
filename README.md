@@ -11,7 +11,8 @@
 
 1. ```npm install```
 2. ```npm run dev```
-3. Open browser to http://localhost:8001
+3. Setup environment variables and Redis
+4. Open browser to http://localhost:8001
 
 ##Redis
 
