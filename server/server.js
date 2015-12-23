@@ -40,7 +40,7 @@ app.use(session({
     port: config.redis_port,
     host: config.redis_host
   }),
-  secret: 'get smarter',
+  secret: process.env.SESSION_SECRET || 'get smarter',
   resave: false,
   saveUninitialized: false
 }));
