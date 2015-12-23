@@ -3,8 +3,9 @@
     <div class="fire-list">
       <md-list>
         <div ng-repeat="user in main.users">
+
           <md-list-item class="md-3-line md-whitepaper-1dp">
-            <img ng-src="{{user.avatar || '/images/avatar.jpg'}}" class="avatar" alt="{{user.firstName}} {{user.lastName}}" />
+            <fallback-src user="user"></fallback-src>
             <div class="md-list-item-text"  layout-align="space-between stretch">
 
               <div layout="row" flex>

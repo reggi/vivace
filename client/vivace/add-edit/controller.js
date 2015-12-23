@@ -14,13 +14,9 @@ module.exports = function(regexProvider, $location, $routeParams, CandidateModel
   }
   this.save = () => {
     if($routeParams.id !== 'new') {
-      promise = CandidateModel.update({id: this.details.id}, this.details).$promise;
+      CandidateModel.update({id: this.details.id}, this.details);
 
-      promise.then((data) => {
-        $location.path('/details/' + data.id);
-      }, () => {
-        $location.path('/not-found');
-      });
+
 
     }else{
       this.details.lastContact = new Date();
