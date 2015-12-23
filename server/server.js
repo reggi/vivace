@@ -74,7 +74,6 @@ passport.use(new GoogleStrategy({
 ));
 
 function ensureAuthenticated(req, res, next) {
-  config.oauth2_callback_url = req.protocol + "://" + req.headers.host;
   if (req.isAuthenticated()) { return next(); }
   res.redirect('/auth/google');
 }
