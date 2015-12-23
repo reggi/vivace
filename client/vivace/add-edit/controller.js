@@ -23,6 +23,7 @@ module.exports = function(regexProvider, $location, $routeParams, CandidateModel
       });
 
     }else{
+      this.details.lastContact = new Date();
       promise = CandidateModel.save(this.details).$promise;
 
       promise.then((data) => {

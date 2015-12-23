@@ -20,14 +20,13 @@ class DbHelper {
   _storeObjectAtKey(model, obj) {
     let multi = this.client.multi();
     let flatObj = flat.flatten(obj);
-    let flatModelSchema = flat.flatten(model.schema);
 
     let key = model.getKey(obj.id);
     let indexKey = model.getKey('index');
 
     multi.hset(indexKey, obj.id, key);
-    for (let attributeName in flatModelSchema) {
-      if(flatObj[attributeName] === undefined) {
+    for (let attributeName in model.schema) {
+      if(flatObj[attributeName]) {
         multi.hset(key, attributeName, flatObj[attributeName]);
       }
     }
