@@ -41,7 +41,9 @@ class Candidates {
     this.router.get('/:id', this.getById);
     this.router.put('/:id', jsonParser, this.update);
     this.router.post('/', jsonParser, this.add);
-    this.router.post('/populate', this.populate);
+    if (process.env.NODE_ENV !== 'production') {
+      this.router.post('/populate', this.populate);
+    }
   }
 
   getAll(req, res) {
