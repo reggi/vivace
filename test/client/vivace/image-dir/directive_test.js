@@ -1,5 +1,5 @@
 const chai =  require('chai');
-
+const expect = chai.expect;
 
 describe('the vivace image-dir controller', () => {
   let $rootScope,
@@ -21,7 +21,7 @@ describe('the vivace image-dir controller', () => {
       "firstName": "Kasey",
       "lastName": "Adams",
       "shortDescription": "Voluptate aut et et sit omnis saepe.",
-      "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/128.jpg",
+      "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/bolzanmarco/128.jpg",
       "comments": "",
       "lastContact": "Thu Nov 19 2015 22:18:09 GMT-0500 (EST)"
     };
@@ -33,10 +33,24 @@ describe('the vivace image-dir controller', () => {
 
   }));
 
-  it('should be true for display image', () => {
+  it('should be true for image to display', () => {
+
     let isolateScope = $element.isolateScope();
 
-    chai.expect(isolateScope.display).to.be.true;
+    expect(isolateScope.display).to.be.true;
+
+  });
+
+  it('should have img tag with attribute ng-show', () => {
+
+   expect(element[0].querySelector('img').hasAttribute('ng-show')).to.be.true;
+
+  });
+
+  it('should have div tag with attribute ng-hide', () => {
+
+    expect(element[0].querySelector('div div').hasAttribute('ng-hide')).to.be.true;
+
   });
 
 });

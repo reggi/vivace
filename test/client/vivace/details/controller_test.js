@@ -1,5 +1,5 @@
 const chai =  require('chai');
-
+const expect = chai.expect;
 
 describe('the vivace details controller', () => {
   let ctrl;
@@ -11,7 +11,7 @@ describe('the vivace details controller', () => {
   }));
 
   it('should not be null for user', () => {
-    chai.expect(ctrl.user).not.to.be.null;
+   expect(ctrl.user).not.to.be.null;
   });
 
 });
