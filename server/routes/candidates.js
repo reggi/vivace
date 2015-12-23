@@ -1,8 +1,8 @@
 import express from 'express';
 import DbHelper from '../helper/database';
-import faker from 'faker';
 import bodyParser from 'body-parser';
 import Joi from 'joi';
+
 
 let db = new DbHelper();
 let jsonParser = bodyParser.json();
@@ -107,6 +107,7 @@ class Candidates {
   }
 
   populate(req, res) {
+    let faker = require('faker');
     let fakeUser = {
       firstName: faker.name.firstName(),
       lastName: faker.name.lastName(),
