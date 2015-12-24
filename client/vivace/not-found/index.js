@@ -10,12 +10,12 @@ angular.module('notFound', [
 ])
 .provider('notFoundConfig', require('./configurationProvider'))
 
-.config(function($routeProvider, notFoundConfigProvider) {
+.config(['$routeProvider', 'notFoundConfigProvider', function($routeProvider, notFoundConfigProvider) {
   const routePrefix = notFoundConfigProvider.routePrefix;
 
   routes.forEach((route) => {
     $routeProvider.when(routePrefix + route.path, route);
   });
-});
+}]);
 
 module.exports = 'notFound';

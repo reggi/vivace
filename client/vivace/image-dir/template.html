@@ -1,0 +1,4 @@
+<div>
+  <img ng-show="display" ng-src="{{user.avatar || user.firstName}}"  class="avatar" alt="{{user.firstName}} {{user.lastName}}" />
+  <div class="circle" ng-hide="display">{{user.firstName| limitTo:1}} {{user.lastName| limitTo:1}}</div>
+</div>

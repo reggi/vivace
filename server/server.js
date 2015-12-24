@@ -15,13 +15,10 @@ const app = express();
 const RedisStore = connectRedis(session);
 
 if (process.env.NODE_ENV !== 'production') {
-  let webpackConfig = require('../webpack.config');
   const webpackDevMiddleware = require('webpack-dev-middleware');
   const webpack = require('webpack');
 
-  let config = webpackConfig;
-
-  let compiler = webpack(config);
+  let compiler = webpack(require('../webpack.config'));
 
   app.use(webpackDevMiddleware(compiler, {
     noInfo: false,
@@ -33,7 +30,6 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 app.use(cookieParser());
-
 app.use(session({
   store: new RedisStore({
     prefix: 'vivace.sess:',
@@ -78,6 +74,12 @@ function ensureAuthenticated(req, res, next) {
   res.redirect('/auth/google');
 }
 
+// for development using json server is faster.
+if (!process.env.NO_REDIS) {
+  console.log('running redis', process.env);
+  app.use('/api', require('./routes'));
+}
+
 app.get('/',
   ensureAuthenticated,
   (req, res) => {
@@ -85,14 +87,18 @@ app.get('/',
       res.type('html');
       res.end(info);
     });
-});
+  }
+);
+
+
 app.get('/auth/google',
     passport.authenticate('google', {
       scope: [
       'https://www.googleapis.com/auth/plus.login',
       'https://www.googleapis.com/auth/userinfo.email'
       ]
-    }));
+    })
+);
 
 app.get('/auth/google/callback', 
   passport.authenticate('google', { failureRedirect: '/auth/google' }),
@@ -106,7 +112,5 @@ let listener = app.listen(process.env.PORT || 8001, () => {
   console.log('\x1b[33m%s:\x1b[4m%s\x1b[0m', 'App is listening on port', listener.address().port);
 });
 
-//Registering our routes
-app.use('/api', apiRouter);
 
 module.exports = app;
