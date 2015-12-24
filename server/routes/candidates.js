@@ -1,8 +1,8 @@
 import express from 'express';
 import DbHelper from '../helper/database';
-import faker from 'faker';
 import bodyParser from 'body-parser';
 import Joi from 'joi';
+
 
 let db = new DbHelper();
 let jsonParser = bodyParser.json();
@@ -41,7 +41,9 @@ class Candidates {
     this.router.get('/:id', this.getById);
     this.router.put('/:id', jsonParser, this.update);
     this.router.post('/', jsonParser, this.add);
-    this.router.post('/populate', this.populate);
+    if (process.env.NODE_ENV !== 'production') {
+      this.router.post('/populate', this.populate);
+    }
   }
 
   getAll(req, res) {
@@ -105,6 +107,7 @@ class Candidates {
   }
 
   populate(req, res) {
+    let faker = require('faker');
     let fakeUser = {
       firstName: faker.name.firstName(),
       lastName: faker.name.lastName(),
