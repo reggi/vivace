@@ -41,6 +41,7 @@ describe('the vivace image-dir controller', () => {
 
   });
 
+
   it('should have img tag with attribute ng-show', () => {
 
    expect(element[0].querySelector('img').hasAttribute('ng-show')).to.be.true;
