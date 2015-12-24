@@ -2,7 +2,8 @@ var webpack = require('webpack');
 var path = require('path');
 var nodeModulesDir = path.join(__dirname, '../node_modules');
 
-module.exports = {
+var config = {
+  devtool: 'eval',
   entry: {
     app: './client/index.js',
     vendor: [
@@ -12,7 +13,8 @@ module.exports = {
       'angular-animate',
       'angular-resource',
       'angular-material',
-      'angular-route'
+      'angular-route',
+      'angular-messages'
     ]
   },
   output: {
@@ -36,3 +38,6 @@ module.exports = {
     new webpack.DefinePlugin({'DATA_SOURCE_URL': process.env.DATA_SOURCE_URL || "'/api'"})
   ]
 };
+
+
+module.exports = config;
