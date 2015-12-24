@@ -1,5 +1,4 @@
 
-
 module.exports = [
   'regexProvider',
   '$location',
@@ -8,6 +7,7 @@ module.exports = [
   function(regexProvider, $location, $routeParams, CandidateModel) {
 
     let promise;
+
 
     this.regex = regexProvider;
     this.details = {};

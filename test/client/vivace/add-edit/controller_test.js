@@ -1,5 +1,5 @@
 const chai =  require('chai');
-
+const expect = chai.expect;
 
 describe('the vivace add-edit controller', () => {
   let ctrl,
@@ -15,7 +15,7 @@ describe('the vivace add-edit controller', () => {
 
   it('should not be update candidate for heading', () => {
     routeParams.id = 123;
-    chai.expect(ctrl.heading).to.equal('Update Candidate');
+    expect(ctrl.heading).to.equal('Update Candidate');
   });
 
 });

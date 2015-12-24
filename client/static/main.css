@@ -122,3 +122,22 @@ comments md-list{
 /*
 Candidates page CSS ends
 */
+/*
+Image-dir css
+*/
+.circle
+{
+  width: 100px;
+  height: 100px;
+  max-width: 100px;
+  max-height: 100px;
+  margin: 8px;
+  font-size:40px;
+  color:#fff;
+  line-height:100px;
+  text-align:center;
+  background-color:#EF501F
+}
+/*
+End Image-dir css
+*/
