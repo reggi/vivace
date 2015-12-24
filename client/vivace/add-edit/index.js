@@ -13,12 +13,16 @@ angular.module('irCandidateAddEdit', [
 .controller('candidateAddEditController', require('./controller'))
 .provider('candidateAddEditConfig', require('./configurationProvider'))
 .factory('regexProvider', require('./regexProvider'))
-.config(function($routeProvider, candidateAddEditConfigProvider) {
-  const routePrefix = candidateAddEditConfigProvider.routePrefix;
 
-  routes.forEach((route) => {
-    $routeProvider.when(routePrefix + route.path, route);
-  });
-});
+.config([
+  '$routeProvider',
+  'candidateAddEditConfigProvider',
+  function($routeProvider, candidateAddEditConfigProvider) {
+    const routePrefix = candidateAddEditConfigProvider.routePrefix;
+
+    routes.forEach((route) => {
+      $routeProvider.when(routePrefix + route.path, route);
+    });
+  }]);
 
 module.exports = 'irCandidateAddEdit';

@@ -13,12 +13,15 @@ angular.module('irCandidateDetails', [
 .controller('candidateDetailsController', require('./controller'))
 .provider('candidateDetailsConfig', require('./configurationProvider'))
 
-.config(function($routeProvider, candidateDetailsConfigProvider) {
-  const routePrefix = candidateDetailsConfigProvider.routePrefix;
+.config([
+  '$routeProvider',
+  'candidateDetailsConfigProvider',
+  function($routeProvider, candidateDetailsConfigProvider) {
+    const routePrefix = candidateDetailsConfigProvider.routePrefix;
 
-  routes.forEach((route) => {
-    $routeProvider.when(routePrefix + route.path, route);
-  });
-});
+    routes.forEach((route) => {
+      $routeProvider.when(routePrefix + route.path, route);
+    });
+  }]);
 
 module.exports = 'irCandidateDetails';
