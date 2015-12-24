@@ -6,7 +6,7 @@ module.exports = function() {
    scope: {user: '=user'},
    templateUrl: firetemplate,
    link: (scope, element) => {
-      scope.jim='jim';
+     
      scope.display = true;
 
      element.find('img')[0].onerror = function() {
