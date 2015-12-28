@@ -18,11 +18,8 @@ if (process.env.NODE_ENV !== 'production') {
   app.use('/client', express.static(path.join(__dirname, '../dist')))
 }
 
-// for development using json server is faster.
-if (!process.env.NO_REDIS) {
-  console.log('running redis', process.env);
-  app.use('/api', require('./routes'));
-}
+
+app.use('/api', require('./routes'));
 
 
 app.get('/', (req, res) => {
