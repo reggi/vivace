@@ -39,7 +39,7 @@ module.exports = [
         BlobConversion
           .convert(files[0].$ngfBlobUrl, files[0].name)
           .then((base64Data) => {
-            this.details.image = base64Data;
+            this.details.avatar = base64Data;
           });
       }
     };

@@ -8,12 +8,12 @@
         ngf-select="candidate.uploadImage($files)" 
         multiple="multiple">
         <img 
-          ngf-thumbnail="candidate.details.image || candidate.defaultAvatar"
+          ngf-thumbnail="candidate.details.avatar || candidate.defaultAvatar"
           ngf-drop="uploadFiles($files)"
           ngf-drag-over-class="'dragover'"
           ngf-multiple="true" 
-          ngf-pattern="'image/*,application/pdf'" />
-        <span>Click to {{(candidate.details.image ? 'change' : 'upload')}}</span>
+          ngf-pattern="'image'" />
+        <span>Click to {{(candidate.details.avatar ? 'change' : 'upload')}}</span>
       </div>
     </div>
 
