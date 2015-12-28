@@ -9,15 +9,17 @@ module.exports = [
 
     let promise;
 
-    this.defaultAvatar = 'sfsdfsdfsdf';//require('../../static/img/avatar.png');
+    this.defaultAvatar = 'http://i.imgur.com/AnSoiBG.png';
     this.regex = regexProvider;
     this.details = {};
+
     if($routeParams.id !== 'new') {
       this.heading = 'Update Candidate';
       this.details = CandidateModel.get({id: $routeParams.id});
-    }else{
+    } else {
       this.heading = 'Add Candidate';
     }
+
     this.save = () => {
       if($routeParams.id !== 'new') {
         promise = CandidateModel.update({id: this.details.id}, this.details).$promise;
