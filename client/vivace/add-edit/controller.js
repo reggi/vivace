@@ -4,7 +4,8 @@ module.exports = [
   '$location',
   '$routeParams',
   'CandidateModel',
-  function(regexProvider, $location, $routeParams, CandidateModel) {
+  'BlobConversion',
+  function(regexProvider, $location, $routeParams, CandidateModel, BlobConversion) {
 
     let promise;
 
@@ -36,6 +37,16 @@ module.exports = [
         }, () => {
           $location.path('/not-found');
         });
+      }
+    };
+
+    this.uploadImage = (files) => {
+      if(files && files.length) {
+        BlobConversion
+          .convert(files[0].$ngfBlobUrl)
+          .then((base64Data) => {
+            this.details.image = base64Data;
+          });
       }
     };
 
