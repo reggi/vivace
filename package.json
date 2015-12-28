@@ -46,6 +46,7 @@
     "babel-loader": "^6.2.0",
     "chai": "^3.4.1",
     "chai-subset": "^1.2.0",
+    "connect-session-sequelize": "^3.0.0",
     "coveralls": "^2.11.6",
     "css-loader": "^0.23.0",
     "es6-promise": "^3.0.2",

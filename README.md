@@ -11,9 +11,9 @@
 
 1. ```npm install```
 2. ```npm run db``` _You only need to do this once_
-2. ```npm run dev```
-3. Setup environment variables and Redis
-4. Open browser to http://localhost:8001
+3. ```npm run dev```
+4. Setup environment variables.
+5. Open browser to http://localhost:8001
 
 Updating the
 

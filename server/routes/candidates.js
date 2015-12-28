@@ -1,19 +1,10 @@
 import express from 'express';
-<<<<<<< f9d6b9995e94a0001f46346f0b41bfc26ad3ea25
-import DbHelper from '../helper/database';
-import bodyParser from 'body-parser';
-import Joi from 'joi';
 
-
-let db = new DbHelper();
-=======
 import bodyParser from 'body-parser';
 import Joi from 'joi';
 
 import CandidateModel from '../models/CandidateModel';
 
-//let db = new DbHelper();
->>>>>>> Switched server to use sequelize and sqlite3
 let jsonParser = bodyParser.json();
 
 let candidateModel = {
