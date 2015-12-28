@@ -9,5 +9,6 @@ export default angular.module('irVivace', [
   require('./vivace/add-edit'),
   require('./vivace/details'),
   require('./vivace/not-found'),
-  require('./vivace/image-dir')
+  require('./vivace/image-dir'),
+  require('./vivace/comments')
 ]);
