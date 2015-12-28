@@ -27,6 +27,14 @@ var model = module.exports = db.define('candidate', {
 
   avatar: {
     type: Sql.TEXT
+  },
+
+  phone: {
+    type: Sql.STRING
+  },
+
+  email: {
+    type: Sql.STRING
   }
 });
 
