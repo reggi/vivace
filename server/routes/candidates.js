@@ -25,8 +25,10 @@ let candidateModel = {
     lastName: Joi.string().required(),
     summary: Joi.string().optional(),
     avatar: Joi.string().optional(),
-    createdAt: Joi.string().optional(),
-    updatedAt: Joi.string().optional()
+    createdAt: Joi.any().optional(),
+    updatedAt: Joi.any().optional(),
+    phone: Joi.any().optional(),
+    email: Joi.any().optional()
   },
 
   isValid(body) {
@@ -38,7 +40,7 @@ let candidateModel = {
 };
 
 
-const MUTABLE_FIELDS = ['firstName', 'lastName', 'summary', 'avatar'];
+const MUTABLE_FIELDS = ['firstName', 'lastName', 'summary', 'avatar', 'email', 'phone'];
 
 function validateBody(req, res, next) {
   if (req.body.avatar === null) {

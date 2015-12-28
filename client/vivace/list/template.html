@@ -14,16 +14,17 @@
                   <a href="#/details/{{user.id}}" class="fire-list-headline">{{user.firstName}} {{user.lastName}}</a>
                 </div>
 
-                <p flex>
+                <!--<p flex>
+                  @TODO: Add this back in when comments are done.
                 <div layout="row" layout-align="end center" class="md-caption">
                   Last contacted {{user.lastContact | date :'fullDate'}}
                 </div>
-                </p>
+                </p>-->
 
               </div>
 
               <div layout="row" flex>
-                <h4 ng-bind="user.shortDescription" flex></h4>
+                <h4 ng-bind="user.summary" flex></h4>
               </div>
 
             </div>
