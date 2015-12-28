@@ -30,7 +30,6 @@ if (process.env.NODE_ENV !== 'production') {
   app.use('/client', express.static(path.join(__dirname, '../dist')))
 }
 
-
 app.use(require('./session'));
 
 app.use(passport.initialize());

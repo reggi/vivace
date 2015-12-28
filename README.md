@@ -11,8 +11,8 @@
 
 1. ```npm install```
 2. ```npm run db``` _You only need to do this once_
-3. ```npm run dev```
-4. Setup environment variables.
+3. Setup environment variables.
+4. ```npm run start```
 5. Open browser to http://localhost:8001
 
 Updating the
