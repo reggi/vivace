@@ -4,8 +4,7 @@ FAIL=0
 
 echo "starting dev servers, output will be mixed - press CTRL+c to quit"
 
-NO_REDIS=true DATA_SOURCE_URL="'http://localhost:3000'" NODE_ENV=production node server &
-json-server ./scripts/fakeData.js &
+node server &
 
 
 for job in `jobs -p`

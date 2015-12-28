@@ -8,11 +8,9 @@ module.exports = function() {
       id: i,
       firstName: faker.name.firstName(),
       lastName: faker.name.lastName(),
-      shortDescription: faker.lorem.sentence(),
-      avatar: faker.internet.avatar(),
-      comments: [],
-      lastContact: faker.date.past()
+      summary: faker.lorem.sentence(),
+      avatar: faker.internet.avatar()
     });
   }
-  return {candidates: output};
+  return output;
 };
