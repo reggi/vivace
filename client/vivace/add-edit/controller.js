@@ -9,7 +9,7 @@ module.exports = [
 
     let promise;
 
-
+    this.defaultAvatar = require('../../static/img/avatar.png');
     this.regex = regexProvider;
     this.details = {};
     if($routeParams.id !== 'new') {
@@ -21,23 +21,15 @@ module.exports = [
     this.save = () => {
       if($routeParams.id !== 'new') {
         promise = CandidateModel.update({id: this.details.id}, this.details).$promise;
-
-        promise.then((data) => {
-          $location.path('/details/' + data.id);
-        }, () => {
-          $location.path('/not-found');
-        });
-
-      }else{
+      } else {
         this.details.lastContact = new Date();
         promise = CandidateModel.save(this.details).$promise;
-
-        promise.then((data) => {
-          $location.path('/details/' + data.id);
-        }, () => {
-          $location.path('/not-found');
-        });
       }
+      promise.then((data) => {
+        $location.path('/details/' + data.id);
+      }, () => {
+        $location.path('/not-found');
+      });
     };
 
     this.uploadImage = (files) => {

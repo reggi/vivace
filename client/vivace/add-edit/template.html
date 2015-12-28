@@ -3,19 +3,31 @@
 <form name="candidateForm" ng-submit="candidateForm.$valid && candidate.save()" novalidate>
 
   <div layout layout-sm="column">
-
-    <md-input-container flex>
-      <label>First name</label>
-      <input ng-required="true" ng-model="candidate.details.firstName">
-    </md-input-container>
-
-    <md-input-container flex>
-      <label>Last name</label>
-      <input ng-required="true" ng-model="candidate.details.lastName">
-    </md-input-container>
-
+    <div layout layout-sm="column">
+      <button 
+        ngf-select="candidate.uploadImage($files)" 
+        multiple="multiple">
+        Upload on file select
+      </button>
+      <img 
+        ngf-thumbnail="file || candidate.defaultAvatar"
+        ngf-drop="uploadFiles($files)"
+        ngf-drag-over-class="'dragover'"
+        ngf-multiple="true" 
+        ngf-pattern="'image/*,application/pdf'"
+        class="avatar" />
+    </div>
+    <div layout layout-sm="column">
+      <md-input-container flex>
+        <label>First name</label>
+        <input ng-required="true" ng-model="candidate.details.firstName">
+      </md-input-container>
+      <md-input-container flex>
+        <label>Last name</label>
+        <input ng-required="true" ng-model="candidate.details.lastName">
+      </md-input-container>
+    </div>
   </div>
-
 
   <div layout layout-sm="column">
 
@@ -60,14 +72,5 @@
     </md-button>
 
   </div>
-  
-  <button ngf-select="candidate.uploadImage($files)" multiple="multiple">Upload on file select</button>
-    Drop File:
-  <div ngf-drop="uploadFiles($files)" class="drop-box"
-    ngf-drag-over-class="'dragover'" ngf-multiple="true" 
-    ngf-pattern="'image/*,application/pdf'">Drop Images or PDFs files here</div>
-  <div ngf-no-file-drop>File Drag/Drop is not supported for this browser</div>
-
-  Image thumbnail: <img ngf-thumbnail="file || '/thumb.jpg'">
 
 </form>
