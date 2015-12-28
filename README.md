@@ -10,18 +10,12 @@
 #Getting started
 
 1. ```npm install```
-2. ```npm run dev```
-3. Setup environment variables and Redis
-4. Open browser to http://localhost:8001
+2. ```npm run db``` _You only need to do this once_
+3. Setup environment variables.
+4. ```npm run start```
+5. Open browser to http://localhost:8001
 
-##Redis
-
-For development purposes, install [Docker Toolbox](https://www.docker.com/docker-toolbox), fire up Kitematic and install redis container through it to get a working Redis server with nearly zero config.
-Set the following env variable for your Redis DB host and port.
-
-```export REDIS_PORT=32768```
-
-```export REDIS_HOST=192.168.99.100```
+Updating the
 
 ## Running tests
 1. ```npm test```

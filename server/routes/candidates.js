@@ -1,10 +1,9 @@
 import express from 'express';
-import DbHelper from '../helper/database';
 import bodyParser from 'body-parser';
 import Joi from 'joi';
 
+import CandidateModel from '../models/CandidateModel';
 
-let db = new DbHelper();
 let jsonParser = bodyParser.json();
 
 let candidateModel = {
@@ -14,111 +13,86 @@ let candidateModel = {
     id: Joi.number().integer().optional(),
     firstName: Joi.string().required(),
     lastName: Joi.string().required(),
-    shortDescription: Joi.string().required(),
+    summary: Joi.string().optional(),
     avatar: Joi.string().optional(),
-    comments: Joi.any().strip(),
-    lastContact: Joi.string().optional()
+    createdAt: Joi.any().optional(),
+    updatedAt: Joi.any().optional(),
+    phone: Joi.any().optional(),
+    email: Joi.any().optional()
   },
-  getKey(id = "") {
-    return this.name + "_" + this.version + ":" + id
-  },
+
   isValid(body) {
-    var validityFlag = true;
     if (!body) {
-      validityFlag = false;
-    } else if (Joi.validate(body, this.schema).error) {
-      validityFlag = false;
+      return false;
     }
-    return validityFlag;
+    return Joi.validate(body, this.schema).error;
   }
 };
 
+
+const MUTABLE_FIELDS = ['firstName', 'lastName', 'summary', 'avatar', 'email', 'phone'];
+
+function validateBody(req, res, next) {
+  if (req.body.avatar === null) {
+    delete req.body.avatar;
+  }
+
+  var bodyError = candidateModel.isValid(req.body);
+  if (bodyError) {
+    return res.status(400).end('bodyError :: ' + bodyError);
+  }
+  next();
+}
+
 class Candidates {
   constructor() {
-
     this.router = express.Router();
     this.router.get('/', this.getAll);
     this.router.get('/:id', this.getById);
-    this.router.put('/:id', jsonParser, this.update);
-    this.router.post('/', jsonParser, this.add);
-    if (process.env.NODE_ENV !== 'production') {
-      this.router.post('/populate', this.populate);
-    }
+    this.router.put('/:id', jsonParser, validateBody, this.update);
+    this.router.post('/', jsonParser, validateBody, this.add);
   }
 
   getAll(req, res) {
-    db.getAll(candidateModel).then((result) => {
+    CandidateModel.findAll().then((result) => {
       res.json(result);
-      res.end();
-      return;
+    },
+    (err) => {
+      console.error(err.stack);
+      res.status(500).send('unable to complete request ');
     });
   }
 
   getById(req, res) {
-    db.get(candidateModel, req.params.id).then((result) => {
+    CandidateModel.findOne({where: {id: req.params.id}}).then((result) => {
       if(!result)  {
         res.status(404);
         return res.end();
       }
 
       res.json(result);
-      return res.end();
     });
   }
 
   add(req, res) {
-    if (!candidateModel.isValid(req.body)) {
-      res.sendStatus(400);
-      res.end();
-      return;
-    }
-
     let newCandidate = req.body;
 
-    db.add(candidateModel, newCandidate).then((result) => {
-      res.json(result);
-      res.status(201);
-      res.end();
-      return;
+    CandidateModel.create(newCandidate).then((result) => {
+      res.status(201).json(result);
     });
   }
 
   update(req, res) {
-    if (!candidateModel.isValid(req.body)) {
-      res.sendStatus(400);
-      res.end();
-      return;
-    }
-
     let updatedFields = req.body;
 
-    db.update(candidateModel, req.params.id, updatedFields).then((result) => {
-      if(!result)  {
-        res.sendStatus(404);
-        res.end();
-        return;
-      }
-
-      res.json(result);
-      res.status(204)
-      res.end();
-      return;
-    });
-  }
-
-  populate(req, res) {
-    let faker = require('faker');
-    let fakeUser = {
-      firstName: faker.name.firstName(),
-      lastName: faker.name.lastName(),
-      shortDescription: faker.lorem.sentence(),
-      avatar: faker.internet.avatar(),
-      comments: [],
-      lastContact: faker.date.past()
-    };
-
-    db.add(candidateModel, fakeUser).then(() => {
-      res.send(fakeUser);
+    CandidateModel.update(updatedFields, {
+      fields : MUTABLE_FIELDS,
+      where: {id: req.params.id},
+      returning: true
+    }).then((result) => {
+      res.status(204).json(result);
+    }, (err) => {
+      res.status(404).end('Could not find candidate with id of ' + req.params.id);
     });
   }
 }

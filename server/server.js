@@ -1,6 +1,4 @@
 import express from 'express';
-import session from 'express-session';
-import connectRedis from 'connect-redis';
 import fs from 'fs';
 import path from 'path';
 import passport from 'passport';
@@ -12,7 +10,10 @@ import config from './config';
 import apiRouter from './routes';
 
 const app = express();
-const RedisStore = connectRedis(session);
+
+app.use(cookieParser());
+
+
 
 if (process.env.NODE_ENV !== 'production') {
   const webpackDevMiddleware = require('webpack-dev-middleware');
@@ -29,17 +30,7 @@ if (process.env.NODE_ENV !== 'production') {
   app.use('/client', express.static(path.join(__dirname, '../dist')))
 }
 
-app.use(cookieParser());
-app.use(session({
-  store: new RedisStore({
-    prefix: 'vivace.sess:',
-    port: config.redis_port,
-    host: config.redis_host
-  }),
-  secret: process.env.SESSION_SECRET || 'get smarter',
-  resave: false,
-  saveUninitialized: false
-}));
+app.use(require('./session'));
 
 app.use(passport.initialize());
 app.use(passport.session());
@@ -74,11 +65,9 @@ function ensureAuthenticated(req, res, next) {
   res.redirect('/auth/google');
 }
 
-// for development using json server is faster.
-if (!process.env.NO_REDIS) {
-  console.log('running redis', process.env);
-  app.use('/api', require('./routes'));
-}
+
+
+app.use('/api', require('./routes'));
 
 app.get('/',
   ensureAuthenticated,
