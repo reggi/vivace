@@ -3,7 +3,7 @@ var faker = require('faker');
 module.exports = function() {
   var output = [];
 
-  for (var i = 0; i < 80; i++) {
+  for (var i = 1; i < 80; i++) {
     output.push({
       id: i,
       firstName: faker.name.firstName(),
