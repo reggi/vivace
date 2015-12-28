@@ -9,6 +9,7 @@
     "dev": "./scripts/dev.sh",
     "test-watch": "node ./node_modules/karma/bin/karma start test/karma-dev.conf.js --browsers PhantomJS",
     "test-ci": "node ./node_modules/karma/bin/karma start test/karma-ci.conf.js --single-run --browsers PhantomJS",
+    "test-server": "./node_modules/.bin/mocha -r ./test/mocha_helpers.js -R spec --recursive test/server",
     "coverage-push": "cat $(pwd)/test/coverage/lcov.info | ./node_modules/.bin/coveralls",
     "db": "npm run db:sync && npm run db:populate",
     "db:sync": "node ./dev/syncdb",
