@@ -9,7 +9,7 @@ module.exports = [
 
     let promise;
 
-    this.defaultAvatar = require('../../static/img/avatar.png');
+    this.defaultAvatar = 'sfsdfsdfsdf';//require('../../static/img/avatar.png');
     this.regex = regexProvider;
     this.details = {};
     if($routeParams.id !== 'new') {

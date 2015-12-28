@@ -141,10 +141,10 @@ Image-dir css
 /*
 End Image-dir css
 */
-/*
-Candidate add form begins
- */
 
+/*
+Candidate add/edit form begins
+ */
 .avatar-upload {
   position: relative;
   min-width: 120px;
@@ -189,5 +189,5 @@ Candidate add form begins
   width: 80%;
 }
 /*
-Candidate add form ends
+Candidate add/edit form ends
  */

@@ -34,7 +34,7 @@ module.exports = [
             responseType: 'arraybuffer'
           })
           .then((result) => {
-            resolve(renderDataUrl(result.data, blobUrl));
+            resolve(renderDataUrl(result.data, fileName));
           });
       });
     };
