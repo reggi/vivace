@@ -9,13 +9,12 @@ let sessionConf = {
 };
 
 
-if (config.redis_host) {
+if (config.redis_url) {
   const connectRedis = require('connect-redis');
   const RedisStore = connectRedis(session);
   sessionConf.store = new RedisStore({
     prefix: 'vivace.sess:',
-    port: config.redis_port,
-    host: config.redis_host
+    url: config.redis_url
   });
 } else {
   const SequelizeStore = require('connect-session-sequelize')(session.Store);

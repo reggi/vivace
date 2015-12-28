@@ -3,15 +3,14 @@ import fs from 'fs';
 import path from 'path';
 import passport from 'passport';
 import cookieParser from 'cookie-parser';
+import compression from 'compression';
 import {OAuth2Strategy as GoogleStrategy} from 'passport-google-oauth';
-
-
 import config from './config';
-import apiRouter from './routes';
 
 const app = express();
 
 app.use(cookieParser());
+
 
 
 
@@ -25,8 +24,8 @@ if (process.env.NODE_ENV !== 'production') {
     noInfo: false,
     publicPath: '/client'
   }));
-
 } else {
+  app.use(compression());
   app.use('/client', express.static(path.join(__dirname, '../dist')))
 }
 
