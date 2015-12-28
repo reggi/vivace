@@ -35,7 +35,7 @@ module.exports = [
     this.uploadImage = (files) => {
       if(files && files.length) {
         BlobConversion
-          .convert(files[0].$ngfBlobUrl)
+          .convert(files[0].$ngfBlobUrl, files[0].name)
           .then((base64Data) => {
             this.details.image = base64Data;
           });
