@@ -4,8 +4,8 @@ module.exports = [
   '$location',
   '$routeParams',
   'CandidateModel',
-  'BlobConversion',
-  function(regexProvider, $location, $routeParams, CandidateModel, BlobConversion) {
+  'Upload',
+  function(regexProvider, $location, $routeParams, CandidateModel, Upload) {
 
     let promise;
 
@@ -36,10 +36,10 @@ module.exports = [
 
     this.uploadImage = (files) => {
       if(files && files.length) {
-        BlobConversion
-          .convert(files[0].$ngfBlobUrl, files[0].name)
-          .then((base64Data) => {
-            this.details.avatar = base64Data;
+        Upload
+          .base64DataUrl(files)
+          .then((urls) => {
+            this.details.avatar = urls[0];
           });
       }
     };
