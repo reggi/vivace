@@ -11,10 +11,7 @@ const app = express();
 
 app.use(cookieParser());
 
-
-
-
-if (process.env.NODE_ENV !== 'production') {
+if (['production', 'staging'].indexOf(process.env.NODE_ENV) === -1) {
   const webpackDevMiddleware = require('webpack-dev-middleware');
   const webpack = require('webpack');
 
