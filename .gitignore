@@ -33,4 +33,7 @@ node_modules
 test/build
 test/coverage
 *.orig
+
 .idea
+dev/database.db
+dist/

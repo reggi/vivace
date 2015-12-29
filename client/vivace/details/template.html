@@ -1,0 +1,43 @@
+<div layout="column" ng-cloak="" class="inputdemoIcons">
+
+  <md-content flex layout layout-align="center">
+
+    <paper flex="20">
+
+      <fallback-src user="details.user"></fallback-src>
+
+    </paper>
+
+    <paper flex>
+      <br>
+      <md-input-container class="md-icon-float md-block">
+        <!-- Use floating label instead of placeholder -->
+        <label>Name</label>
+        <input ng-model="details.user.name" type="text" class="short-description border-bottom-none" disabled="true">
+      </md-input-container>
+
+      <md-input-container class="md-icon-float md-block">
+        <input ng-model="details.user.email" type="email" placeholder="Email" class="short-description border-bottom-none" disabled="true">
+      </md-input-container>
+
+      <md-input-container  class="md-icon-float md-block">
+        <input ng-model="details.user.phone" type="text" placeholder="Phone Number" class="short-description border-bottom-none" disabled="true">
+      </md-input-container>
+
+      <md-input-container class="md-icon-float md-block ">
+        <label>Short Description</label>
+        <textarea ng-model="details.user.summary" class="short-description border-bottom-none" disabled="true"></textarea>
+      </md-input-container>
+
+    </paper>
+
+  </md-content>
+
+  <section layout="row">
+
+    <md-button class="md-raised md-warn" href="#/add/{{details.user.id}}">Edit</md-button>
+    <md-button class="md-raised md-warn" href="#/">Back</md-button>
+
+  </section>
+
+</div>

@@ -42,6 +42,7 @@ module.exports = function(config) {
       // webpack configuration
       module: {
         loaders: [,
+          {test: /\.(png|jpg)$/, loader: 'url-loader?limit=8192' }, // inline base64 URLs for <=8k images, direct URLs for the rest
           {test: /\.js$/, loader: 'babel-loader', exclude: nodeModulesDir},
           {test: /\.css$/, loader: "style!css"},
           { test: /\.html$/, loader: 'ngtemplate!html-loader'}
@@ -50,6 +51,9 @@ module.exports = function(config) {
       externals: {
         'angular': 'window.angular'
       },
+      plugins: [
+        new webpack.DefinePlugin({'DATA_SOURCE_URL': process.env.DATA_SOURCE_URL || "'http://localhost:3000/'"})
+      ],
       resolve: {
         modulesDirectories: [
           "",

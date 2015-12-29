@@ -3,26 +3,28 @@
     <div class="fire-list">
       <md-list>
         <div ng-repeat="user in main.users">
+
           <md-list-item class="md-3-line md-whitepaper-1dp">
-            <img ng-src="{{user.avatar || '/images/avatar.jpg'}}" class="avatar" alt="{{user.firstName}} {{user.lastName}}" />
+            <fallback-src user="user"></fallback-src>
             <div class="md-list-item-text"  layout-align="space-between stretch">
 
               <div layout="row" flex>
 
                 <div flex="70" class="md-headline">
-                  <a href="#/details/{{user.$id}}" class="fire-list-headline">{{user.firstName}} {{user.lastName}}</a>
+                  <a href="#/details/{{user.id}}" class="fire-list-headline">{{user.firstName}} {{user.lastName}}</a>
                 </div>
 
-                <p flex>
+                <!--<p flex>
+                  @TODO: Add this back in when comments are done.
                 <div layout="row" layout-align="end center" class="md-caption">
                   Last contacted {{user.lastContact | date :'fullDate'}}
                 </div>
-                </p>
+                </p>-->
 
               </div>
 
               <div layout="row" flex>
-                <h4 ng-bind="user.shortDescription" flex></h4>
+                <h4 ng-bind="user.summary" flex></h4>
               </div>
 
             </div>

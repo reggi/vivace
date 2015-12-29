@@ -1,83 +1,100 @@
 import express from 'express';
-import DbHelper from '../helper/database';
-import faker from 'faker';
 import bodyParser from 'body-parser';
+import Joi from 'joi';
 
-const candidateModel = {
-  name: "candidates",
-  version: "1",
+import CandidateModel from '../models/CandidateModel';
+
+let jsonParser = bodyParser.json({limit: '5mb'});
+
+let candidateModel = {
+  name: 'candidates',
+  version: '1',
   schema: {
-    firstName: "",
-    lastName: "",
-    shortDescription: "",
-    avatar: "",
-    comments: [],
-    lastContact: ""
+    id: Joi.number().integer().optional(),
+    firstName: Joi.string().required(),
+    lastName: Joi.string().required(),
+    summary: Joi.string().optional(),
+    avatar: Joi.string().optional(),
+    createdAt: Joi.any().optional(),
+    updatedAt: Joi.any().optional(),
+    phone: Joi.any().optional(),
+    email: Joi.any().optional()
   },
-  getKey(id = "") {
-    return this.name + "_" + this.version + ":" + id
+
+  isValid(body) {
+    if (!body) {
+      return false;
+    }
+    return Joi.validate(body, this.schema).error;
   }
 };
 
-let candidate = express.Router();
-let db = new DbHelper();
-let jsonParser = bodyParser.json();
 
-candidate.get('/', (req, res) => {
-  db.getAll(candidateModel).then((result) => {
-    res.json(result);
-  });
-});
+const MUTABLE_FIELDS = ['firstName', 'lastName', 'summary', 'avatar', 'email', 'phone'];
 
-candidate.get('/:id', (req, res) => {
-  db.get(candidateModel, req.params.id).then((result) => {
-    if(result) {
+function validateBody(req, res, next) {
+  if (req.body.avatar === null) {
+    delete req.body.avatar;
+  }
+
+  var bodyError = candidateModel.isValid(req.body);
+  if (bodyError) {
+    return res.status(400).end('bodyError :: ' + bodyError);
+  }
+  next();
+}
+
+class Candidates {
+  constructor() {
+    this.router = express.Router();
+    this.router.get('/', this.getAll);
+    this.router.get('/:id', this.getById);
+    this.router.put('/:id', jsonParser, validateBody, this.update);
+    this.router.post('/', jsonParser, validateBody, this.add);
+  }
+
+  getAll(req, res) {
+    CandidateModel.findAll().then((result) => {
       res.json(result);
-    } else {
-      res.status(404);
-    }
-    res.end();
-  });
-});
+    },
+    (err) => {
+      console.error(err.stack);
+      res.status(500).send('unable to complete request ');
+    });
+  }
 
-candidate.put('/:id', jsonParser, (req, res) => {
-  if (!req.body) return res.sendStatus(400).end();
+  getById(req, res) {
+    CandidateModel.findOne({where: {id: req.params.id}}).then((result) => {
+      if(!result)  {
+        res.status(404);
+        return res.end();
+      }
 
-  var updatedFields = req.body;
+      res.json(result);
+    });
+  }
 
-  db.update(candidateModel, req.params.id, updatedFields).then((result) => {
-    if(result) {
-      res.status(204);
-    } else {
-      res.status(404);
-    }
-    res.end();
-  });
-});
+  add(req, res) {
+    let newCandidate = req.body;
 
-candidate.post('/', jsonParser, (req, res) => {
-  if (!req.body) return res.sendStatus(400).end();
+    CandidateModel.create(newCandidate).then((result) => {
+      res.status(201).json(result);
+    });
+  }
 
-  var newCandidate = req.body;
-  db.add(candidateModel, newCandidate).then((result) => {
-    res.status(201).end();
-  });
-});
+  update(req, res) {
+    let updatedFields = req.body;
 
-candidate.post('/populate', (req, res) => {
-  let fake_user = {
-    firstName: faker.name.firstName(),
-    lastName: faker.name.lastName(),
-    shortDescription: faker.lorem.sentence(),
-    avatar: faker.internet.avatar(),
-    comments: [],
-    lastContact: faker.date.past()
-  };
+    CandidateModel.update(updatedFields, {
+      fields : MUTABLE_FIELDS,
+      where: {id: req.params.id},
+      returning: true
+    }).then((result) => {
+      res.status(204).json(result);
+    }, (err) => {
+      res.status(404).end('Could not find candidate with id of ' + req.params.id);
+    });
+  }
+}
 
-  db.add(candidateModel, fake_user).then((result) => {
-    res.send(fake_user);
-  });
-
-});
-
-module.exports = candidate;
+module.exports = new Candidates();

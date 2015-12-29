@@ -1,38 +1,12 @@
+module.exports = [
+  'CandidateModel',
+  '$location',
+  function(CandidateModel, $location) {
+    let promise = CandidateModel.query().$promise;
 
-
-module.exports = function() {
-  this.users =[
-    {
-      avatar : 'http://www.riomarca.com/clientes/captura/images/avatar.jpg',
-      firstName:'Jimit',
-      lastName:'Patel',
-      shortDescription:'Good Candidate',
-      email:'jpatel@inrhythm.com',
-      phone:'1234567890',
-      lastContact :'Last contacted a few seconds ago'
-    },
-    {
-      avatar : 'http://www.riomarca.com/clientes/captura/images/avatar.jpg',
-      firstName:'Jimit',
-      lastName:'Patel',
-      shortDescription:'Good Candidate',
-      email:'jpatel@inrhythm.com',
-      phone:'1234567890',
-      lastContact :'Last contacted a few seconds ago'
-
-    },
-    {
-      avatar : 'http://www.riomarca.com/clientes/captura/images/avatar.jpg',
-      firstName:'Jimit',
-      lastName:'Patel',
-      shortDescription:'Good Candidate',
-      email:'jpatel@inrhythm.com',
-      phone:'1234567890',
-      lastContact :'Last contacted a few seconds ago'
-
-    }
-  ];
-
-
-
-};
+    promise.then((data) => {
+      this.users = data;
+    }, () => {
+      $location.path('/not-found');
+    });
+  }];
