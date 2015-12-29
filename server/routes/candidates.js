@@ -4,7 +4,7 @@ import Joi from 'joi';
 
 import CandidateModel from '../models/CandidateModel';
 
-let jsonParser = bodyParser.json();
+let jsonParser = bodyParser.json({limit: '5mb'});
 
 let candidateModel = {
   name: 'candidates',
