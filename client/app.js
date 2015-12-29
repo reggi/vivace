@@ -5,6 +5,7 @@ import 'angular-material/angular-material.css';
 export default angular.module('irVivace', [
   require('angular-route'),
   require('angular-sanitize'),
+  require('ng-file-upload'),
   require('./vivace/list'),
   require('./vivace/add-edit'),
   require('./vivace/details'),

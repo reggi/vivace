@@ -2,7 +2,9 @@ var webpack = require('webpack');
 var path = require('path');
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
 
-var isProduction = process.argv[2] == '-p';
+var isStaging = process.env.BUILD_ENVIRONMENT;
+var isProduction = process.argv[2] == '-p' && process.env.NODE_ENV == 'production' && !isStaging;
+
 
 var config = {
   devtool: 'eval',
@@ -16,7 +18,8 @@ var config = {
       'angular-resource',
       'angular-material',
       'angular-route',
-      'angular-messages'
+      'angular-messages',
+      'ng-file-upload'
     ]
   },
   output: {
@@ -45,6 +48,11 @@ var config = {
   ]
 };
 
+if (isStaging || isProduction) {
+  config.devtool = undefined;
+  config.module.preLoaders = undefined;
+}
+
 if (isProduction) {
   console.log('production mode enabled, running uglify');
   config.plugins= [new webpack.optimize.UglifyJsPlugin({
@@ -52,9 +60,9 @@ if (isProduction) {
     compress: true,
     verbose: true
   })].concat(config.plugins);
-
-  config.devtool = undefined;
 }
+
+
 
 
 module.exports = config;
