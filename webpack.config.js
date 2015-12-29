@@ -2,7 +2,7 @@ var webpack = require('webpack');
 var path = require('path');
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
 
-var isProduction = process.argv[2] == '-p';
+var isProduction = process.argv[2] == '-p' && process.env.NODE_ENV == 'production';
 
 var config = {
   devtool: 'eval',
@@ -55,6 +55,7 @@ if (isProduction) {
   })].concat(config.plugins);
 
   config.devtool = undefined;
+  config.module.preLoaders = undefined;
 }
 
 
