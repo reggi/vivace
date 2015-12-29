@@ -33,7 +33,6 @@ module.exports = [
 
     promise.then((data) => {
       console.log(data);
-
     }, () => {
       $location.path('/not-found');
     });
