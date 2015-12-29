@@ -37,4 +37,11 @@ describe('the vivace comments controller', () => {
 
   });
 
+  it('should be false the displayform variable after calling save function', () => {
+    ctrl.displayform = true;
+    ctrl.save();
+    expect(ctrl.displayform).to.be.false;
+
+  });
+
 });
