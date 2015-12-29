@@ -1,6 +1,6 @@
 var exec = require('child_process').exec;
 
-if (process.env.NODE_ENV != 'production') {
+if (['production', 'staging'].indexOf(process.env.NODE_ENV) === -1) {
   process.exit(0);
 }
 
