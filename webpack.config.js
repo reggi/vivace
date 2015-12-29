@@ -2,7 +2,7 @@ var webpack = require('webpack');
 var path = require('path');
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
 
-var isProduction = process.argv[2] == '-p' && process.env.NODE_ENV == 'production';
+var isProduction = process.argv[2] == '-p' && process.env.NODE_ENV == 'production' && !process.env.BUILD_ENVIRONMENT;
 
 var config = {
   devtool: 'eval',
