@@ -25,9 +25,9 @@ module.exports = [
       if($routeParams.id !== 'new') {
         promise = CandidateModel.update({id: this.details.id}, this.details).$promise;
       } else {
-        this.details.lastContact = new Date();
         promise = CandidateModel.save(this.details).$promise;
       }
+
       promise.then((data) => {
         $location.path('/details/' + data.id);
       }, () => {
