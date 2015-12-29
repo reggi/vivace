@@ -27,6 +27,7 @@
     "express": "^4.13.3",
     "express-session": "^1.12.1",
     "joi": "^7.0.1",
+    "ng-file-upload": "^11.0.0",
     "passport": "^0.3.2",
     "passport-google-oauth": "^0.2.0",
     "pg": "^4.4.3",

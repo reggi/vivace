@@ -1,64 +1,80 @@
 <h1>{{candidate.heading}}</h1>
 
 <form name="candidateForm" ng-submit="candidateForm.$valid && candidate.save()" novalidate>
+  <div class="candidate-form">
+    <div class="left">
+      <div 
+        class="avatar avatar-upload"
+        ngf-select="candidate.uploadImage($files)" 
+        multiple="multiple">
+        <img 
+          ngf-thumbnail="candidate.details.avatar || candidate.defaultAvatar"
+          ngf-drop="uploadFiles($files)"
+          ngf-drag-over-class="'dragover'"
+          ngf-multiple="true" 
+          ngf-pattern="'image'"
+          ngf-no-object-url="true" />
+        <span>Click to {{(candidate.details.avatar ? 'change' : 'upload')}}</span>
+      </div>
+    </div>
 
-  <div layout layout-sm="column">
+    <div class="right">
+      <div layout layout-sm="column">
 
-    <md-input-container flex>
-      <label>First name</label>
-      <input ng-required="true" ng-model="candidate.details.firstName">
-    </md-input-container>
+        <md-input-container flex>
+          <label>First name</label>
+          <input ng-required="true" ng-model="candidate.details.firstName">
+        </md-input-container>
 
-    <md-input-container flex>
-      <label>Last name</label>
-      <input ng-required="true" ng-model="candidate.details.lastName">
-    </md-input-container>
+        <md-input-container flex>
+          <label>Last name</label>
+          <input ng-required="true" ng-model="candidate.details.lastName">
+        </md-input-container>
 
-  </div>
-
-
-  <div layout layout-sm="column">
-
-    <md-input-container flex md-is-error="candidateForm.email.$invalid && (candidateForm.$submitted || candidateForm.email.$dirty)">
-
-      <label>Email</label>
-      <input name="email" ng-model="candidate.details.email" ng-pattern="candidate.regex.EMAILREGEX">
-
-      <div ng-messages="candidateForm.email.$error" ng-if="candidateForm.$submitted || candidateForm.email.$touched">
-        <div ng-message="required">Email is required.</div>
       </div>
 
-    </md-input-container>
+      <div layout layout-sm="column">
+
+        <md-input-container flex md-is-error="candidateForm.email.$invalid && (candidateForm.$submitted || candidateForm.email.$dirty)">
+
+          <label>Email</label>
+          <input name="email" ng-model="candidate.details.email" ng-pattern="candidate.regex.EMAILREGEX">
+
+          <div ng-messages="candidateForm.email.$error" ng-if="candidateForm.$submitted || candidateForm.email.$touched">
+            <div ng-message="required">Email is required.</div>
+          </div>
+
+        </md-input-container>
 
 
-    <md-input-container flex md-is-error="candidateForm.phone.$invalid && (candidateForm.$submitted || candidateForm.phone.$dirty)">
+        <md-input-container flex md-is-error="candidateForm.phone.$invalid && (candidateForm.$submitted || candidateForm.phone.$dirty)">
 
-      <label>Phone number</label>
-      <input name="phone" ng-model="candidate.details.phone" ng-pattern="candidate.regex.PHONEREGEX">
+          <label>Phone number</label>
+          <input name="phone" ng-model="candidate.details.phone" ng-pattern="candidate.regex.PHONEREGEX">
 
-      <div ng-messages="candidateForm.phone.$error" ng-if="candidateForm.$submitted || candidateForm.phone.$touched">
-        <div ng-message="required">Phone Number is required.</div>
+          <div ng-messages="candidateForm.phone.$error" ng-if="candidateForm.$submitted || candidateForm.phone.$touched">
+            <div ng-message="required">Phone Number is required.</div>
+          </div>
+
+        </md-input-container>
+
       </div>
 
-    </md-input-container>
+      <md-input-container class="md-block">
 
+        <label>Short description</label>
+        <textarea ng-required="true" ng-model="candidate.details.summary" columns="1" md-maxlength="100" rows="3"></textarea>
+
+      </md-input-container>
+
+      <div class="text-right">
+
+        <md-button type="submit" class="md-raised md-primary" aria-label="Add candidate">
+          {{candidate.heading}}
+        </md-button>
+
+      </div>
+
+    </div>
   </div>
-
-
-
-  <md-input-container class="md-block">
-
-    <label>Short description</label>
-    <textarea ng-required="true" ng-model="candidate.details.summary" columns="1" md-maxlength="100" rows="3"></textarea>
-
-  </md-input-container>
-
-  <div class="text-right">
-
-    <md-button type="submit" class="md-raised md-primary" aria-label="Add candidate">
-      {{candidate.heading}}
-    </md-button>
-
-  </div>
-
 </form>

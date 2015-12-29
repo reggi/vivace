@@ -16,7 +16,8 @@ var config = {
       'angular-resource',
       'angular-material',
       'angular-route',
-      'angular-messages'
+      'angular-messages',
+      'ng-file-upload'
     ]
   },
   output: {

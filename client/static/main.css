@@ -141,3 +141,53 @@ Image-dir css
 /*
 End Image-dir css
 */
+
+/*
+Candidate add/edit form begins
+ */
+.avatar-upload {
+  position: relative;
+  min-width: 120px;
+  min-height: 120px;
+  width: 100%;
+}
+
+.avatar-upload span,
+.avatar-upload img {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  display: block;
+  cursor: pointer;
+}
+
+.avatar-upload span {
+  background-color: rgba(0,0,0,0.7);
+  color: #fff;
+  text-align: center;
+  opacity: 0;
+  padding: 5px 0px;
+  transition: opacity 0.25s;
+  -webkit-transition: opacity 0.25s;
+  -moz-transition: opacity 0.25s;
+}
+
+.avatar-upload:hover span {
+  opacity: 1;
+}
+
+.candidate-form > .left {
+  float: left;
+  width: 20%;
+  max-width: 200px;
+  text-align: center;
+}
+
+.candidate-form > .right {
+  float: left;
+  width: 80%;
+}
+/*
+Candidate add/edit form ends
+ */

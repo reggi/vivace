@@ -78,7 +78,6 @@ app.get('/',
   }
 );
 
-
 app.get('/auth/google',
     passport.authenticate('google', {
       scope: [
