@@ -7,7 +7,7 @@ angular.module('irCandidateComments', [
   require('angular-material'),
   require('angular-route')
 ])
-
+.controller('candidateComments', require('./controller'))
 .directive('comments', require('./directive'));
 
 module.exports = 'irCandidateComments';

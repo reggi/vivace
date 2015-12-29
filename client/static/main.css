@@ -141,3 +141,41 @@ Image-dir css
 /*
 End Image-dir css
 */
+/*
+Details page css
+*/
+.detailsRouteSection{
+  position: fixed !important;
+  top: 70px;
+
+}
+.inputdemoIcons .md-button{
+  min-width:24px !important;
+}
+/*
+End Details page css
+*/
+/*
+Comments Page
+*/
+.commenthead{
+  padding: 0px 16px;
+
+}
+.commenthead a{
+  display: block;
+  color: rgba(0,0,0,0.26);
+  margin: 1em 0;
+}
+.textcolorgray{
+  display: block;
+  color: rgba(0,0,0,0.26) !important;
+}
+.addcomment{
+  margin: 20px 0px;
+  padding: 0px 16px;
+  width: 80%;
+}
+/*
+End comments page
+*/

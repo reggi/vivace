@@ -5,7 +5,12 @@
     <paper flex="20">
 
       <fallback-src user="details.user"></fallback-src>
+      <section layout="row">
 
+        <md-button class="md-warn" href="#/add/{{details.user.id}}"><md-icon>mode_edit</md-icon></md-button>
+        <md-button class="md-warn" href="#/"><md-icon>backspace</md-icon></md-button>
+
+      </section>
     </paper>
 
     <paper flex>
@@ -32,12 +37,9 @@
     </paper>
 
   </md-content>
-  <comments></comments>
-  <section layout="row">
 
-    <md-button class="md-raised md-warn" href="#/add/{{details.user.id}}">Edit</md-button>
-    <md-button class="md-raised md-warn" href="#/">Back</md-button>
+  <comments id="details.user.id"></comments>
 
-  </section>
+
 
 </div>

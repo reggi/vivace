@@ -4,6 +4,8 @@ module.exports = function() {
  return{
    restrict: 'E',
    scope: {id: '=id'},
-   templateUrl: commentTemplate
+   templateUrl: commentTemplate,
+   controller: 'candidateComments',
+   controllerAs: 'display'
  };
 };

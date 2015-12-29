@@ -1,18 +1,58 @@
-<md-content flex layout layout-align="left">
+<md-content flex  layout-align="left">
 
   <md-list>
-    <md-subheader class="md-no-sticky">Comments</md-subheader>
-    <md-list-item class="md-3-line" >
-      <div class="md-list-item-text" layout="column">
-        <h3>Jim</h3>
-        <p>good candidate and has 6 years of exp scrum master</p>
+
+    <div layout="row" flex class="commenthead">
+
+      <div flex="70"><h3>Comments</h3></div>
+      <div flex><a href="" ng-click="display.displayform=true">Add Comments</a></md-button></div>
+
+    </div>
+
+    <form id="form" flex class="addcomment" name="commentForm" ng-submit="commentForm.$valid && display.save()" novalidate ng-show="display.displayform">
+
+      <md-input-container flex md-is-error="commentForm.author.$invalid && (commentForm.$submitted || commentForm.author.$dirty)">
+        <label>Author Name</label>
+        <input name="author" ng-required="true" ng-model="display.author">
+
+        <div ng-messages="commentForm.author.$error" ng-if="commentForm.$submitted || commentForm.author.$touched">
+          <div ng-message="required">Full Name is required.</div>
+        </div>
+      </md-input-container>
+
+      <md-input-container class="md-block">
+        <label>Comment</label>
+        <textarea ng-required="true" ng-model="display.comment" columns="1" md-maxlength="100" rows="3"></textarea>
+      </md-input-container>
+
+      <div class="text-right">
+        <md-button type="submit" class="md-raised md-primary" aria-label="Add candidate">
+          Save
+        </md-button>
+        <md-button class="md-raised md-primary" aria-label="Add candidate" ng-click="display.displayform=false">
+          Cancel
+        </md-button>
       </div>
-    </md-list-item>
-    <md-list-item class="md-3-line" >
-      <div class="md-list-item-text" layout="column">
-        <h3>Jim</h3>
-        <p>good candidate and has 6 years of exp scrum master</p>
+
+    </form>
+
+    <md-list-item class="md-3-line" ng-repeat="data in display.comments">
+      <div layout="row" flex>
+
+        <div flex="70" class="md-headline">
+          <div class="md-list-item-text" layout-align="space-between stretch">
+            <h3>{{data.author}}</h3>
+            <p class="textcolorgray">{{data.comment}}</p>
+          </div>
+        </div>
+
+        <div layout="row" layout-align="end center" class="md-caption">
+          <p >Last contacted</p>
+        </div>
+
+
       </div>
+
     </md-list-item>
   </md-list>
 
