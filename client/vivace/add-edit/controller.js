@@ -1,3 +1,4 @@
+const avatar = require('../../static/img/avatar.png');
 
 module.exports = [
   'regexProvider',
@@ -9,7 +10,7 @@ module.exports = [
 
     let promise;
 
-    this.defaultAvatar = 'http://i.imgur.com/AnSoiBG.png';
+    this.defaultAvatar = avatar;
     this.regex = regexProvider;
     this.details = {};
 
