@@ -1,7 +1,7 @@
 import Sql from 'sequelize';
 import db from './_connection';
 
-import ContactCommentModel from './ContactCommentModel';
+import CommentModel from './CommentModel';
 
 var model = module.exports = db.define('candidate', {
   id : {
@@ -38,4 +38,4 @@ var model = module.exports = db.define('candidate', {
   }
 });
 
-model.hasMany(ContactCommentModel);
+model.hasMany(CommentModel);
