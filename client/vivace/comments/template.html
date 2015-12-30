@@ -6,7 +6,7 @@
 
       <h3 flex="70">Comments</h3>
       <div flex>
-        <a ng-click="display.newComment.editing = true">Add Comment</a>
+        <a ng-click="display.showAddForm = true">Add Comment</a>
       </div>
 
     </div>
@@ -16,15 +16,15 @@
       flex 
       class="addcomment" 
       name="commentAddForm" 
-      ng-submit="commentAddForm.$valid && display.newComment.save()"
-      ng-show="display.newComment.editing"
+      ng-submit="commentAddForm.$valid && display.saveComment()"
+      ng-show="display.showAddForm"
       novalidate>
 
       <md-input-container class="md-block">
         <label>Comment</label>
         <textarea 
           ng-required="true" 
-          ng-model="display.newComment.comment" 
+          ng-model="display.newComment.body"
           columns="1" 
           md-maxlength="100"
           rows="3">
@@ -41,7 +41,7 @@
         <md-button 
           class="md-raised md-primary" 
           aria-label="Cancel" 
-          ng-click="display.newComment.editing = false">
+          ng-click="display.showAddForm = false">
           Cancel
         </md-button>
       </div>
@@ -54,7 +54,7 @@
         <div flex="70" class="md-headline">
           <div class="md-list-item-text" layout-align="space-between stretch">
             <h3>{{data.author}}</h3>
-            <p class="textcolorgray">{{data.comment}}</p>
+            <p class="textcolorgray">{{data.body}}</p>
           </div>
         </div>
 

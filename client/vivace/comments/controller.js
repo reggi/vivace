@@ -8,33 +8,17 @@ module.exports = [
       id: $routeParams.id
     };
 
-    this.newComment = {
-      author: 'josh?',
-      comment: ''
-    };
+    this.newComment = {};
 
     this.saveComment = () => {
-      DataModel.save(routeData)
+      this.newComment.type = 'contact';
+      DataModel.save(routeData, this.newComment)
         .$promise
         .then((data) => {
-          newComment = Object.assign(newComment, data);
+          this.newComment = {};
+          this.comments.push(data);
         });
     };
-
-    this.comments = [
-      {
-        id: 1,
-        comment: 'good candidate has 6 years of exp and a scrum master',
-        author: 'Jim Pat',
-        createdAt: 1451490558
-      },
-      {
-        id: 2,
-        comment: 'yo dis a comment',
-        author: 'Jo Sho',
-        createdAt: 1451490558
-      }
-    ];
 
     DataModel
       .query(routeData)

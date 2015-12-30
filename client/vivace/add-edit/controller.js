@@ -4,9 +4,13 @@ module.exports = [
   'regexProvider',
   '$location',
   '$routeParams',
-  'CandidateModel',
+  'DataModel',
   'Upload',
-  function(regexProvider, $location, $routeParams, CandidateModel, Upload) {
+  function(regexProvider, $location, $routeParams, DataModel, Upload) {
+    let routeData = {
+      id: $routeParams.id,
+      collection: 'candidates'
+    };
 
     let promise;
 
@@ -16,16 +20,16 @@ module.exports = [
 
     if($routeParams.id !== 'new') {
       this.heading = 'Update Candidate';
-      this.details = CandidateModel.get({id: $routeParams.id});
+      this.details = DataModel.get(routeData);
     } else {
       this.heading = 'Add Candidate';
     }
 
     this.save = () => {
       if($routeParams.id !== 'new') {
-        promise = CandidateModel.update({id: this.details.id}, this.details).$promise;
+        promise = DataModel.update(routeData, this.details).$promise;
       } else {
-        promise = CandidateModel.save(this.details).$promise;
+        promise = DataModel.save(routeData, this.details).$promise;
       }
 
       promise.then((data) => {

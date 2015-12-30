@@ -13,7 +13,6 @@ let commentModel = {
     id: Joi.number().integer().optional(),
     type: Joi.string().required(),
     body: Joi.string().required(),
-    author: Joi.string().required(),
     contactMethod: Joi.string().optional(),
     createdAt: Joi.any().optional()
   },
@@ -36,8 +35,8 @@ function getPrimaryEmail(emails) {
   return email;
 }
 
-function appendUserEmail(req, res, next) {
-  req.user.email = getPrimaryEmail(req.user.emails);
+function appendAuthor(req, res, next) {
+  req.user.author = getPrimaryEmail(req.user.emails);
   next();
 }
 
@@ -58,7 +57,7 @@ class Comments {
     this.router = express.Router({ mergeParams: true });
     this.router.get('/', this.getAll);
     this.router.get('/:commentId', this.getById);
-    this.router.post('/', jsonParser, validateBody, appendUserEmail, this.add);
+    this.router.post('/', jsonParser, validateBody, appendAuthor, this.add);
   }
 
   getAll(req, res) {
@@ -90,7 +89,7 @@ class Comments {
 
   add(req, res) {
     let newComment = req.body;
-    newComment.email = req.user.email;
+    newComment.author = req.user.author;
     newComment.candidateId = req.params.candidateId;
 
     CommentModel
