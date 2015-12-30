@@ -11,7 +11,8 @@ let commentModel = {
   version: '1',
   schema: {
     id: Joi.number().integer().optional(),
-    comment: Joi.string().required(),
+    type: Joi.string().required(),
+    body: Joi.string().required(),
     author: Joi.string().required(),
     contactMethod: Joi.string().optional(),
     createdAt: Joi.any().optional()
@@ -52,17 +53,21 @@ function validateBody(req, res, next) {
   next();
 }
 
-class Candidates {
+class Comments {
   constructor() {
-    this.router = express.Router();
+    this.router = express.Router({ mergeParams: true });
     this.router.get('/', this.getAll);
-    this.router.get('/:id', this.getById);
+    this.router.get('/:commentId', this.getById);
     this.router.post('/', jsonParser, validateBody, appendUserEmail, this.add);
   }
 
   getAll(req, res) {
     CommentModel
-      .findAll()
+      .findAll({
+        where: {
+          candidateId: req.params.candidateId
+        }
+      })
       .then((result) => {
         return res.json(result);
       }, (err) => {
@@ -84,10 +89,12 @@ class Candidates {
   }
 
   add(req, res) {
-    let newCandidate = req.body;
+    let newComment = req.body;
+    newComment.email = req.user.email;
+    newComment.candidateId = req.params.candidateId;
 
     CommentModel
-      .create(newCandidate)
+      .create(newComment)
       .then((result) => {
         return res
           .status(201)
