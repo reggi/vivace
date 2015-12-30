@@ -54,6 +54,7 @@ class Candidates {
   }
 
   getAll(req, res) {
+    console.log('req.user: ', req.user);
     CandidateModel.findAll().then((result) => {
       res.json(result);
     },
