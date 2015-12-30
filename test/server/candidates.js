@@ -109,6 +109,7 @@ describe('Candidate API', () => {
       beforeEach(()=> {
         request  = httpMocks.createRequest({
           method: 'GET',
+          params: {'id': 4},
           url: '/api/candidates/4'
         });
         response = httpMocks.createResponse();
@@ -118,13 +119,6 @@ describe('Candidate API', () => {
       it('returns 200', (done) => {
         candidates.getById(request, response).then(function () {
           response.statusCode.should.equal(200);
-        }).finally(function () {
-          done();
-        });
-      });
-
-      it('ends successfully', (done) => {
-        candidates.getById(request, response).then(function () {
           response._isEndCalled().should.be.ok;
         }).finally(function () {
           done();
@@ -134,15 +128,6 @@ describe('Candidate API', () => {
       it('returns JSON', (done) => {
         candidates.getById(request, response).then(function () {
           response._isJSON().should.be.ok;
-        }).finally(function () {
-          done();
-        });
-      });
-
-      it('returns valid data', (done) => {
-        candidates.getById(request, response).then(function () {
-          data = JSON.parse(response._getData());
-          data.should.be.eql(mockGet);
         }).finally(function () {
           done();
         });

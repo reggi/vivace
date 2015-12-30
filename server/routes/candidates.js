@@ -73,6 +73,7 @@ class Candidates {
       }
 
       res.json(result);
+      return res.end();
     });
   }
 
