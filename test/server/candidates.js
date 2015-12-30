@@ -8,37 +8,11 @@ let CandidateModel;
 
 let candidates;
 
-const candidateArray = [ 
-  {
-    "firstName": "Lauretta",
-    "lastName": "Barton",
-    "shortDescription": "Est temporibus debitis est et.",
-    "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/kazaky999/128.jpg",
-    "comments": [],
-    "lastContact": "Wed Feb 04 2015 13:15:32 GMT-0500 (EST)"
-  },
-  {
-    "shortDescription": "Et eos impedit odio error.",
-    "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/turkutuuli/128.jpg",
-    "lastContact": "Thu May 14 2015 05:07:08 GMT-0400 (EDT)",
-    "comments": [],
-    "lastName": "Frami",
-    "firstName": "Bertram"
-  },
-  {
-    "firstName": "Jean",
-    "lastName": "Cosby",
-    "shortDescription": "Ut velit natus vel et itaque laboriosam qui est quia.",
-    "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/dawidwu/128.jpg",
-    "comments": [],
-    "lastContact": "Tue Aug 18 2015 08:52:34 GMT-0400 (EDT)"
-  }
-];
-
-const mockGetAll = candidateArray;
-const mockGet = candidateArray[0];
-const mockPost = candidateArray[0];
-const mockPut = candidateArray[0];
+let candidateArray;
+let mockGetAll;
+let mockGet;
+let mockPost;
+let mockPut;
 
 let createPromise = (returnVal) => {
     return () => {
@@ -53,6 +27,37 @@ let createPromise = (returnVal) => {
 describe('Candidate API', () => {
   beforeEach(() => {
     candidates = proxyquire('../../server/routes/candidates', {});
+    candidateArray = [ 
+      {
+        "firstName": "Lauretta",
+        "lastName": "Barton",
+        "shortDescription": "Est temporibus debitis est et.",
+        "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/kazaky999/128.jpg",
+        "comments": [],
+        "lastContact": "Wed Feb 04 2015 13:15:32 GMT-0500 (EST)"
+      },
+      {
+        "shortDescription": "Et eos impedit odio error.",
+        "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/turkutuuli/128.jpg",
+        "lastContact": "Thu May 14 2015 05:07:08 GMT-0400 (EDT)",
+        "comments": [],
+        "lastName": "Frami",
+        "firstName": "Bertram"
+      },
+      {
+        "firstName": "Jean",
+        "lastName": "Cosby",
+        "shortDescription": "Ut velit natus vel et itaque laboriosam qui est quia.",
+        "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/dawidwu/128.jpg",
+        "comments": [],
+        "lastContact": "Tue Aug 18 2015 08:52:34 GMT-0400 (EDT)"
+      }
+    ];
+
+    mockGetAll = candidateArray;
+    mockGet = candidateArray[0];
+    mockPost = candidateArray[0];
+    mockPut = candidateArray[0];
   });
 
   describe('should serve candidates on GET candidates/', () => {
@@ -144,7 +149,7 @@ describe('Candidate API', () => {
       });
 
       it('returns 404 on invalid id', (done) => {
-        candidates.getById(request, response).then(function () {
+        candidates.getById(request, response).catch(function () {
           response.statusCode.should.equal(404);
           response._isEndCalled().should.be.ok;
         }).finally(function () {
@@ -181,13 +186,13 @@ describe('Candidate API', () => {
       })
 
       it('returns 404 on failure', (done) => {
-        mockPut.firstName = null;
+        delete mockPut.firstName;
         request  = httpMocks.createRequest({
           body: mockPut,
           method: 'PUT',
           url: '/api/candidates/3'
         });
-        candidates.update(request, response).then(function () {
+        candidates.update(request, response).catch(function () {
           response.statusCode.should.equal(404);
           response._isEndCalled().should.be.ok;
         }).finally(function () {
@@ -205,7 +210,6 @@ describe('Candidate API', () => {
           url: '/api/candidates'
         });
         response = httpMocks.createResponse();
-
       });
 
       it('returns 201 on success', (done) => {

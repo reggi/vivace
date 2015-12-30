@@ -81,6 +81,7 @@ class Candidates {
 
     return CandidateModel.create(newCandidate).then((result) => {
       res.status(201).json(result);
+      return res.end();
     });
   }
 
