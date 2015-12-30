@@ -6,6 +6,10 @@ module.exports = [
     this.save = () => {
       this.displayform = false;
     };
+    this.saveComment = (comment) => {
+      // do something to save this comment...
+      console.log('update comment: ', comment);
+    };
     let promise = CandidateModel.get({id: $routeParams.id}).$promise;
 
     this.comments = [
