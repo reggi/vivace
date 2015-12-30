@@ -37,7 +37,7 @@ module.exports = [
     ];
 
     DataModel
-      .get(routeData)
+      .query(routeData)
       .$promise
       .then((data) => {
         this.comments = data;

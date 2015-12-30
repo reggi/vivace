@@ -48,8 +48,8 @@ class Candidates {
   constructor() {
     this.router = express.Router();
     this.router.get('/', this.getAll);
-    this.router.get('/:candidateId', this.getById);
-    this.router.put('/:candidateId', jsonParser, validateBody, this.update);
+    this.router.get('/:id', this.getById);
+    this.router.put('/:id', jsonParser, validateBody, this.update);
     this.router.post('/', jsonParser, validateBody, this.add);
   }
 
