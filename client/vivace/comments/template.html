@@ -6,25 +6,25 @@
 
       <h3 flex="70">Comments</h3>
       <div flex>
-        <a ng-click="display.displayform=true">Add Comment</a>
+        <a ng-click="display.newComment.editing = true">Add Comment</a>
       </div>
 
     </div>
 
     <form 
-      id="commentForm" 
+      id="commentAddForm" 
       flex 
       class="addcomment" 
-      name="commentForm" 
-      ng-submit="commentForm.$valid && display.save()"
-      ng-show="display.displayform"
+      name="commentAddForm" 
+      ng-submit="commentAddForm.$valid && display.newComment.save()"
+      ng-show="display.newComment.editing"
       novalidate>
 
       <md-input-container class="md-block">
         <label>Comment</label>
         <textarea 
           ng-required="true" 
-          ng-model="display.comment" 
+          ng-model="display.newComment.comment" 
           columns="1" 
           md-maxlength="100"
           rows="3">
@@ -41,7 +41,7 @@
         <md-button 
           class="md-raised md-primary" 
           aria-label="Cancel" 
-          ng-click="display.displayform=false">
+          ng-click="display.newComment.editing = false">
           Cancel
         </md-button>
       </div>
@@ -56,56 +56,10 @@
             <h3>{{data.author}}</h3>
             <p class="textcolorgray">{{data.comment}}</p>
           </div>
-
-          <div ng-if="data.editing">
-            <form 
-              id="form" 
-              name="commentEditForm" 
-              ng-submit="commentEditForm.$valid && display.saveComment(data)" 
-              novalidate>
-
-              <md-input-container class="md-block">
-                <label for="comment-edit">Comment</label>
-                <textarea 
-                  ng-required="true" 
-                  ng-model="data.comment" 
-                  columns="1" 
-                  md-maxlength="100" 
-                  rows="3"
-                  id="comment-edit">
-                </textarea>
-              </md-input-container>
-
-              <div class="text-right">
-
-                <md-button 
-                  type="submit" 
-                  class="md-raised md-primary" 
-                  aria-label="Save comment">
-                  Save
-                </md-button>
-
-                <md-button 
-                  class="md-raised md-primary" 
-                  aria-label="Cancel" 
-                  ng-click="data.editing = false">
-                  Cancel
-                </md-button>
-              </div>
-            </form> 
-          </div>
-
         </div>
 
         <div layout="row" layout-align="end center" class="md-caption">
-          <p>Last contacted {{data.timestamp}}</p>
-
-          <md-button 
-            class="md-warn" 
-            ng-click="data.editing = !data.editing">
-            <md-icon>mode_edit</md-icon>
-          </md-button>
-
+          <p>Last contacted {{data.createdAt}}</p>
         </div>
       </div>
     </md-list-item>

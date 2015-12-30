@@ -61,6 +61,15 @@ function ensureAuthenticated(req, res, next) {
   res.redirect('/auth/google');
 }
 
+function getCompanyEmail(req) {
+  var email;
+  for(var i=0; i<emails.length; i++) {
+    if(/@[^@]$/.test(emails[i])) {
+      email = emails[i];
+    }
+  }
+  return email;
+}
 
 
 app.use('/api', require('./routes'));
@@ -68,6 +77,8 @@ app.use('/api', require('./routes'));
 app.get('/',
   ensureAuthenticated,
   (req, res) => {
+
+    console.log('req.user : ', req.user);
     fs.readFile(path.join(__dirname, '../client/index.html'), (err, info) => {
       res.type('html');
       res.end(info);

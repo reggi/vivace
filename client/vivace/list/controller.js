@@ -1,8 +1,8 @@
 module.exports = [
-  'CandidateModel',
+  'DataModel',
   '$location',
-  function(CandidateModel, $location) {
-    let promise = CandidateModel.query().$promise;
+  function(DataModel, $location) {
+    let promise = DataModel.query({collection: 'candidates'}).$promise;
 
     promise.then((data) => {
       this.users = data;
