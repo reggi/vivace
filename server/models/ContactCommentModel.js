@@ -9,12 +9,10 @@ module.exports = db.define('contact_comment', {
   },
 
   type: {
-    type: Sql.STRING,
+    type: Sql.ENUM,
+    values: ['contact', 'server'],
     allowNull: false,
-    defaultValue: 'contact',
-    validate: {
-      isIn: ['contact', 'server']
-    }
+    defaultValue: 'contact'
   },
 
   author: {
