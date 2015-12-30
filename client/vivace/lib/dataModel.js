@@ -5,9 +5,9 @@ const DATA_URL = DATA_SOURCE_URL;
 
 module.exports = [
   '$resource',
-  function($resource) {
+  ($resource) => {
     return $resource(
-      `${DATA_URL}/candidates/:id`,
+      `${DATA_URL}/:collection/:id/:subCollection/:subId`,
       {id: '@_id'},
       {update: {method: 'PUT'}}
     );

@@ -62,7 +62,6 @@ function ensureAuthenticated(req, res, next) {
 }
 
 
-
 app.use('/api', require('./routes'));
 
 app.get('/',

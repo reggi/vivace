@@ -1,10 +1,13 @@
 module.exports = [
   '$location',
-  'CandidateModel',
+  'DataModel',
   '$routeParams',
-  function($location, CandidateModel, $routeParams) {
+  function($location, DataModel, $routeParams) {
 
-    let promise = CandidateModel.get({id: $routeParams.id}).$promise;
+    let promise = DataModel.get({
+      id: $routeParams.id,
+      collection: 'candidates'
+    }).$promise;
 
     promise.then((data) => {
       this.user = data;
