@@ -8,6 +8,15 @@ module.exports = db.define('contact_comment', {
     primaryKey: true
   },
 
+  type: {
+    type: Sql.STRING,
+    allowNull: false,
+    defaultValue: 'contact',
+    validate: {
+      isIn: ['contact', 'server']
+    }
+  },
+
   author: {
     type: Sql.STRING,
     allowNull: false
