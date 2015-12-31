@@ -83,6 +83,7 @@
     "karma-spec-reporter": "0.0.23",
     "karma-webpack": "^1.7.0",
     "mocha": "^2.3.4",
+    "node-mocks-http": "^1.5.1",
     "phantomjs": "^1.9.19",
     "phantomjs-polyfill": "0.0.1",
     "webpack-dev-middleware": "^1.4.0"
