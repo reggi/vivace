@@ -231,3 +231,10 @@ Candidate add/edit form begins
 Candidate add/edit form ends
  */
 
+.comment {
+  background-color: #f2f2f2;
+}
+
+.add-comment {
+  background-color: #EF501F !important;
+}

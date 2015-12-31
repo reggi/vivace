@@ -1,12 +1,16 @@
 <md-content flex layout-align="left">
 
-  <md-list>
-
+  <md-list ng-if="display.comments">
     <div layout="row" flex class="commenthead">
 
       <h3 flex="70">Comments</h3>
       <div flex>
-        <a ng-click="display.showAddForm = true">Add Comment</a>
+        <md-button
+          class="md-raised md-primary add-comment"
+          ng-click="display.showAddForm = true"
+          ng-bind="'Add comment'"
+          aria-label="Add comment">
+        </md-button>
       </div>
 
     </div>
@@ -48,22 +52,27 @@
 
     </form>
 
+
     <md-list-item class="md-3-line" ng-repeat="data in display.comments">
       <div layout="row" flex>
 
-        <div flex="70" class="md-headline">
-          <div class="md-list-item-text" layout-align="space-between stretch">
-            <h3>{{data.author}}</h3>
-            <p class="textcolorgray">{{data.body}}</p>
-          </div>
-        </div>
+        <div layout="row" flex="80" layout-padding layout-wrap layout-fill ng-cloak>
+          <md-whiteframe class="md-whiteframe-1dp comment" flex layout layout-align="center center">
+            <div flex="80" class="md-headline">
+              <div class="md-list-item-text" layout-align="space-between stretch">
+                <h4 class="textcolorgray" ng-bind="data.author"></h4>
+                <h3 flex="30" ng-bind="data.body"></h3>
+              </div>
+            </div>
 
-        <div layout="row" layout-align="end center" class="md-caption">
-          <p>Last contacted {{data.createdAt}}</p>
+            <div layout="row" layout-align="end center" class="md-caption">
+              <p class="textcolorgray" ng-bind="data.createdAt"></p>
+            </div>
+          </md-whiteframe>
         </div>
       </div>
+
     </md-list-item>
-
   </md-list>
-
+  <h4 ng-if="!display.comments">No comments yet.</h4>
 </md-content>
