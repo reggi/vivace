@@ -12,10 +12,11 @@ module.exports = [
 
     this.saveComment = () => {
       this.newComment.type = 'contact';
-      DataModel.save(routeData, this.newComment)
+      return DataModel.save(routeData, this.newComment)
         .$promise
         .then((data) => {
           this.newComment = {};
+          this.showAddForm = false;
           this.comments.push(data);
         });
     };

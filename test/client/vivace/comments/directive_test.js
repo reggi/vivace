@@ -5,6 +5,7 @@ describe('the vivace comments controller', () => {
   let $rootScope,
       $element;
   let $compile,
+      DataModel,
       ctrl,
       scope,
       element;
@@ -12,10 +13,11 @@ describe('the vivace comments controller', () => {
   beforeEach(angular.mock.module('irVivaceModels'));
   beforeEach(angular.mock.module('irCandidateComments'));
 
-  beforeEach(angular.mock.inject((_$rootScope_, _$compile_,$controller, _$httpBackend_) => {
+  beforeEach(angular.mock.inject((_$rootScope_, _$compile_,$controller, _DataModel_, _$httpBackend_) => {
     $rootScope = _$rootScope_;
     scope = $rootScope.$new();
     $compile = _$compile_;
+    DataModel = _DataModel_;
     $element = angular.element("<comments id='display.user.id'></comments>");
     _$httpBackend_.when('GET').respond([]);
     ctrl = $controller(require('../../../../client/vivace/comments/controller'));
@@ -24,23 +26,21 @@ describe('the vivace comments controller', () => {
 
   }));
 
-  it('should be false before the add comment is clicked', () => {
-
-    expect(ctrl.displayform).to.be.false;
-
-  });
-
   it('should have a tag with attribute ng-click', () => {
 
    expect(element[0].querySelector('a').hasAttribute('ng-click')).to.be.true;
 
   });
 
-  it('should be false the displayform variable after calling save function', () => {
+  it('should be false the showAddForm variable after calling save function', () => {
 
-    ctrl.displayform = true;
-    ctrl.save();
-    expect(ctrl.displayform).to.be.false;
+    ctrl.showAddForm = true;
+    ctrl
+      .saveComment()
+      .then(() => {
+        expect(ctrl.comments).to.have.length.of.at.least(1);
+        expect(ctrl.showAddForm).to.be.false;
+      });
 
   });
 

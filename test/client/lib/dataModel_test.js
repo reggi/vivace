@@ -6,7 +6,7 @@ const expect = chai.expect;
 // Global variable injectd by webpack.
 const DATA_URL = DATA_SOURCE_URL;
 
-let CandidateModel;
+let DataModel;
 let $httpBackend;
 
 
@@ -20,14 +20,14 @@ const dummy = {
   lastContact: faker.date.past()
 };
 
-describe('the Candidate Model', () => {
+describe('the Data Model', () => {
 
   beforeEach(() => {
     angular.mock.module('irVivaceModels');
   });
 
-  beforeEach(angular.mock.inject(function(_CandidateModel_, _$httpBackend_){
-    CandidateModel = _CandidateModel_;
+  beforeEach(angular.mock.inject((_DataModel_, _$httpBackend_) => {
+    DataModel = _DataModel_;
     $httpBackend = _$httpBackend_;
   }));
 
@@ -35,16 +35,21 @@ describe('the Candidate Model', () => {
     $httpBackend.expectGET(`${DATA_URL}/candidates`)
       .respond([dummy]);
 
-    CandidateModel.query((res) => {
-      expect(res).to.have.length(1);
+    DataModel
+      .query({
+        collection: 'candidates'
+      })
+      .$promise
+      .then((res) => {
+        expect(res).to.have.length(1);
 
-      setTimeout(() => {
-        $httpBackend.verifyNoOutstandingRequest();
-        $httpBackend.verifyNoOutstandingExpectation();
-        done();
-      }, 10);
+        setTimeout(() => {
+          $httpBackend.verifyNoOutstandingRequest();
+          $httpBackend.verifyNoOutstandingExpectation();
+          done();
+        }, 10);
+      });
+      $httpBackend.flush();
     });
-    $httpBackend.flush();
-  });
 
 });
