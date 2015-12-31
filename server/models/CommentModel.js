@@ -20,12 +20,6 @@ module.exports = db.define('comment', {
     allowNull: false
   },
 
-  timestamp: {
-    type: Sql.DATE,
-    allowNull: false,
-    defaultValue: Sql.NOW
-  },
-
   body: {
     type: Sql.TEXT
   }

@@ -3,6 +3,8 @@ import bodyParser from 'body-parser';
 import Joi from 'joi';
 
 import CandidateModel from '../models/CandidateModel';
+import createHistoryItem from '../helpers/createHistoryItem';
+import objectDiff from '../helpers/objectDiff';
 
 let jsonParser = bodyParser.json({limit: '5mb'});
 
@@ -56,12 +58,13 @@ class Candidates {
   getAll(req, res) {
     return CandidateModel.findAll().then((result) => {
       res.json(result);
-      res.end();
+      return res.end();
+
     },
     (err) => {
       console.error(err.stack);
       res.status(500).send('unable to complete request ');
-      res.end();
+      return res.end();
     });
   }
 
@@ -82,25 +85,34 @@ class Candidates {
 
     return CandidateModel.create(newCandidate).then((result) => {
       res.status(201).json(result);
-      return res.end();
+      return createHistoryItem(result.id, req, createHistoryItem.TYPES.CREATE).then(function() {
+        res.end();
+      });
     });
   }
 
   update(req, res) {
     let updatedFields = req.body;
 
-    return CandidateModel.update(updatedFields, {
+    let findPromise = CandidateModel.findOne({where: {id: req.params.id}});
+    let updatePromise = CandidateModel.update(updatedFields, {
       fields : MUTABLE_FIELDS,
-      where: {id: req.params.id},
-      returning: true
-    }).then((result) => {
-      res.json(result);
-      res.end();
-      return result;
-    }, (err) => {
-      res.status(404).end('Could not find candidate with id of ' + req.params.id);
-      return err;
+      where: {id: req.params.id}
     });
+
+    // Sequelize uses bluebird, which doesnt play nicely with this promise chain. :(
+    return Promise.all([findPromise, updatePromise])
+      .then(function(p) {
+        var diffs = objectDiff(p[0].dataValues, updatedFields);
+        createHistoryItem(req.params.id, req, createHistoryItem.TYPES.UPDATE, {fields: diffs.join(', ')});
+        return updatePromise;
+      })
+      .then(() => {
+        return res.status(204).end();
+      }, (err) => {
+        res.status(404).end('Could not find candidate with id of ' + req.params.id);
+        return err;
+      });
   }
 }
 
