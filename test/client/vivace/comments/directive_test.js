@@ -26,12 +26,6 @@ describe('the vivace comments controller', () => {
 
   }));
 
-  it('should have a tag with attribute ng-click', () => {
-
-   expect(element[0].querySelector('a').hasAttribute('ng-click')).to.be.true;
-
-  });
-
   it('should be false the showAddForm variable after calling save function', () => {
 
     ctrl.showAddForm = true;
