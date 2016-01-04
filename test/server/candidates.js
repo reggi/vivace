@@ -1,4 +1,3 @@
-import proxyquire from 'proxyquire';
 import should from 'chai';
 
 import httpMocks from 'node-mocks-http';
@@ -17,8 +16,7 @@ let mockPut;
 describe('Candidate API', () => {
   beforeEach(() => {
 
-
-    candidates = require('../../server/routes/candidates', {});
+    candidates = require('../../server/routes/candidates');
     candidateArray = [ 
       {
         "firstName": "Lauretta",
