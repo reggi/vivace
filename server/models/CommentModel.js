@@ -1,7 +1,7 @@
 import Sql from 'sequelize';
 import db from './_connection';
 
-module.exports = db.define('comment', {
+let model = db.define('comment', {
   id : {
     type: Sql.INTEGER,
     autoIncrement: true,
@@ -25,3 +25,4 @@ module.exports = db.define('comment', {
   }
 });
 
+export default model;

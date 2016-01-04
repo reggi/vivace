@@ -5,4 +5,4 @@ let router = express.Router();
 
 router.use('/candidates', Candidates.router);
 
-module.exports = router;
+export default router;

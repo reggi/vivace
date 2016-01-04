@@ -15,9 +15,7 @@ const FORMATS = {
   [TYPES.DELIST]: 'removed candidate from active list'
 };
 
-
 let createItem = function(candidateId, req, message, messageArgs={}) {
-
   message = interpolate(FORMATS[message] || message, messageArgs);
   return CommentModel.create({
     candidate_id: candidateId,
@@ -29,4 +27,4 @@ let createItem = function(candidateId, req, message, messageArgs={}) {
 
 createItem.TYPES = TYPES;
 
-module.exports = createItem;
+export default createItem;

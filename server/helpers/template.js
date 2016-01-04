@@ -13,6 +13,6 @@ const keyReducer = function(_, key) {
  * @param data
  * @returns string
  */
-module.exports = function(template, data) {
+export default function template(template, data) {
   return template.replace(REGEX, keyReducer.bind(data || {}))
 };

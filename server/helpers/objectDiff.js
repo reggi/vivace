@@ -10,7 +10,7 @@ import {diff} from 'deep-diff';
  * @param current - the new value after changes were applied.
  * @returns [String] - strings with 'value (action)'
  */
-module.exports = function(former, current) {
+export default function objectDiff(former, current) {
   const changes = diff(former, current, function(path, key) {
     return ['firstName', 'lastName', 'summary', 'avatar', 'email', 'phone'].indexOf(key) < 0;
   });
