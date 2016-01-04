@@ -16,7 +16,7 @@ const FORMATS = {
 };
 
 
-var createItem = function(candidateId, req, message, messageArgs={}) {
+let createItem = function(candidateId, req, message, messageArgs={}) {
 
   message = interpolate(FORMATS[message] || message, messageArgs);
   return CommentModel.create({

@@ -1,5 +1,4 @@
-//import {diff} from 'deep-diff';
-var diff = require('deep-diff').diff;
+import {diff} from 'deep-diff';
 
 /**
  * Creates a nice array of changes for an object.
@@ -12,11 +11,11 @@ var diff = require('deep-diff').diff;
  * @returns [String] - strings with 'value (action)'
  */
 module.exports = function(former, current) {
-  var changes = diff(former, current, function(path, key) {
+  const changes = diff(former, current, function(path, key) {
     return ['firstName', 'lastName', 'summary', 'avatar', 'email', 'phone'].indexOf(key) < 0;
   });
 
-  var nicenames = {
+  const nicenames = {
     N: 'added',
     D: 'removed',
     E: 'changed'
@@ -27,7 +26,7 @@ module.exports = function(former, current) {
   }
 
   return changes.map(function(entry){
-    var action = nicenames[entry.kind];
+    let action = nicenames[entry.kind];
 
     if (!entry.lhs && !entry.rhs) {
       return undefined;

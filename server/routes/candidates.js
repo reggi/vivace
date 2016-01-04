@@ -57,26 +57,21 @@ class Candidates {
 
   getAll(req, res) {
     return CandidateModel.findAll().then((result) => {
-      res.json(result);
-      return res.end();
-
+      return res.json(result);
     },
     (err) => {
       console.error(err.stack);
-      res.status(500).send('unable to complete request ');
-      return res.end();
+      return res.status(500).send('unable to complete request ');
     });
   }
 
   getById(req, res) {
     return CandidateModel.findOne({where: {id: req.params.id}}).then((result) => {
       if(!result)  {
-        res.status(404);
-        return res.end();
+        return res.status(404).end();
       }
 
-      res.json(result);
-      return res.end();
+      return res.json(result);
     });
   }
 
@@ -100,10 +95,13 @@ class Candidates {
       where: {id: req.params.id}
     });
 
-    // Sequelize uses bluebird, which doesnt play nicely with this promise chain. :(
     return Promise.all([findPromise, updatePromise])
       .then(function(p) {
-        var diffs = objectDiff(p[0].dataValues, updatedFields);
+        if (!p[0]) {
+          throw new Error('Could not find candidate with id: ' + req.params.id);
+        }
+        const diffs = objectDiff(p[0].dataValues, updatedFields);
+
         createHistoryItem(req.params.id, req, createHistoryItem.TYPES.UPDATE, {fields: diffs.join(', ')});
         return updatePromise;
       })
