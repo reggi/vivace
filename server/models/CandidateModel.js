@@ -1,9 +1,8 @@
 import Sql from 'sequelize';
 import db from './_connection';
-
 import CommentModel from './CommentModel';
 
-var model = module.exports = db.define('candidate', {
+let model = db.define('candidate', {
   id : {
     type: Sql.INTEGER,
     autoIncrement: true,
@@ -39,3 +38,5 @@ var model = module.exports = db.define('candidate', {
 });
 
 model.hasMany(CommentModel);
+
+export default model;

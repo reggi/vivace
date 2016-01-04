@@ -1,7 +1,6 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import Joi from 'joi';
-
 import CandidateModel from '../models/CandidateModel';
 
 let jsonParser = bodyParser.json({limit: '5mb'});
@@ -20,7 +19,7 @@ let candidateModel = {
     phone: Joi.any().optional(),
     email: Joi.any().optional()
   },
-
+  
   isValid(body) {
     if (!body) {
       return false;
@@ -28,7 +27,6 @@ let candidateModel = {
     return Joi.validate(body, this.schema).error;
   }
 };
-
 
 const MUTABLE_FIELDS = ['firstName', 'lastName', 'summary', 'avatar', 'email', 'phone'];
 
@@ -104,4 +102,4 @@ class Candidates {
   }
 }
 
-module.exports = new Candidates();
+export default new Candidates();

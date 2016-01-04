@@ -40,3 +40,5 @@ dist/
 
 # Vim
 *.swp
+
+.env

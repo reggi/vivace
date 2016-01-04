@@ -6,17 +6,18 @@ import cookieParser from 'cookie-parser';
 import compression from 'compression';
 import {OAuth2Strategy as GoogleStrategy} from 'passport-google-oauth';
 import config from './config';
+import webpackDevMiddleware from 'webpack-dev-middleware'
+import webpack from 'webpack'
+import webpackConfig from '../webpack.config'
+import session from './session'
+import routes from './routes'
 
 const app = express();
 
 app.use(cookieParser());
 
 if (['production', 'staging'].indexOf(process.env.NODE_ENV) === -1) {
-  const webpackDevMiddleware = require('webpack-dev-middleware');
-  const webpack = require('webpack');
-
-  let compiler = webpack(require('../webpack.config'));
-
+  let compiler = webpack(webpackConfig);
   app.use(webpackDevMiddleware(compiler, {
     noInfo: false,
     publicPath: '/client'
@@ -26,8 +27,7 @@ if (['production', 'staging'].indexOf(process.env.NODE_ENV) === -1) {
   app.use('/client', express.static(path.join(__dirname, '../dist')))
 }
 
-app.use(require('./session'));
-
+app.use(session);
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -61,9 +61,7 @@ function ensureAuthenticated(req, res, next) {
   res.redirect('/auth/google');
 }
 
-
-
-app.use('/api', require('./routes'));
+app.use('/api', routes);
 
 app.get('/',
   ensureAuthenticated,
@@ -84,7 +82,7 @@ app.get('/auth/google',
     })
 );
 
-app.get('/auth/google/callback', 
+app.get('/auth/google/callback',
   passport.authenticate('google', { failureRedirect: '/auth/google' }),
   function(req, res) {
     // Successful authentication, redirect home.
@@ -97,4 +95,4 @@ let listener = app.listen(process.env.PORT || 8001, () => {
 });
 
 
-module.exports = app;
+export default app;

@@ -1,16 +1,14 @@
-var Sequelize = require('sequelize');
-var path = require('path');
+import Sequelize from 'sequelize';
+import path from 'path';
 
+let dbPath = path.normalize(path.join(__dirname, '../../dev/database.db'));
+let dbUrl = process.env.DATABASE_URL;
 
-var dbPath = path.normalize(path.join(__dirname, '../../dev/database.db'));
-var dbUrl = process.env.DATABASE_URL;
+let dbOptions = {
+  dialect: 'sqlite',
+  storage: dbPath
+};
 
+let sequelize = (dbUrl) ? new Sequelize(dbUrl) : new Sequelize('sqlite://' + dbPath, undefined, undefined, dbOptions);
 
-if (dbUrl) {
-  module.exports = new Sequelize(dbUrl);
-} else {
-  module.exports = new Sequelize('sqlite://' + dbPath, undefined, undefined, {
-    dialect: 'sqlite',
-    storage: dbPath
-  });
-}
+export default sequelize;
